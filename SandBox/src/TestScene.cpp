@@ -7,6 +7,7 @@
 #include <math/math.hpp>
 #include <core/Timing.hpp>
 #include <input/Input.hpp>
+#include <imgui/ImGuiLayer.hpp>
 
 #include <Soma.hpp>
 
@@ -69,6 +70,9 @@ void TestScene::onEntry()
 
 	entt::entity previousEnt;
 
+
+	this->m_game->PushOverlay(new SOMA_ENGINE::ImGuiLayer());
+
 }
 
 void TestScene::onExit()
@@ -85,7 +89,7 @@ void TestScene::draw(float dt)
 {
 	if (m_renderContext == nullptr)
 		return;
-	m_renderContext->clear(Color(0.0f, 0.15f, 0.3f), true);
+	/*m_renderContext->clear(Color(0.0f, 0.15f, 0.3f), true);*/
 
 	/*Draw things here*/
 	uniformBufferArray[1] = m_fpCamera->GetViewMatrix();

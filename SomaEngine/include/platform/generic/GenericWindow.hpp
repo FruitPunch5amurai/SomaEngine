@@ -27,5 +27,7 @@ public:
 	virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 	static GenericWindow* create(const WindowProps& props = WindowProps());
 	void* windowHandle;
+	void* context;
+	
 private:
 };

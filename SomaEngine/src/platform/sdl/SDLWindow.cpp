@@ -38,20 +38,31 @@ void SDLWindow::Init(const WindowProps& props)
 	SDL_GL_LoadLibrary(NULL);
 
 	// Request an OpenGL 4.5 context (should be core)
-	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+	const char* glsl_version = "#version 410";
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, 0);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
 	// Also request a depth buffer
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
 	SOMA_CORE_DEBUG("SDL Window Created: {0} ({1},{2})",props.title, props.width, props.height);
 
 	window = SDL_CreateWindow(props.title.c_str(), SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED, props.width, props.height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+		SDL_WINDOWPOS_CENTERED, props.width, props.height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	windowHandle = window;
+	m_context = SDL_GL_CreateContext(window);
+	context = m_context;
+	SDL_GL_MakeCurrent(window, m_context);
+	SDL_GL_SetSwapInterval(1); // Enable vsync
 
-	DeviceContext maincontext = SDL_GL_CreateContext(window);
+	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+		SOMA_CORE_ERROR("Failed to initialize the OpenGL context");
+	}
+
+	SOMA_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "Soma requires at least OpenGL version 4.5!");
 }
 void SDLWindow::Destroy()
 {

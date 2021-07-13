@@ -1,9 +1,9 @@
 #pragma once
 
 #include "core/common.hpp"
-
-#include "platform/generic/GenericWindow.hpp"
 #include <SDL/SDL.h>
+#include "platform/generic/GenericWindow.hpp"
+
 
 class SOMA_API SDLWindow : public GenericWindow {
 	friend class SDLEventProcessor;
@@ -25,8 +25,8 @@ public:
 private:
 	virtual void Init(const WindowProps& props);
 	virtual void Destroy();
+	SDL_GLContext m_context;
 	SDL_Window* window;
-
 	WindowData winData;
 
 };

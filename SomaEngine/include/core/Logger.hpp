@@ -36,4 +36,4 @@ namespace SOMA_ENGINE {
 #define SOMA_WARN(...)          ::SOMA_ENGINE::Logger::GetClientLogger()->warn(__VA_ARGS__)
 #define SOMA_ERROR(...)         ::SOMA_ENGINE::Logger::GetClientLogger()->error(__VA_ARGS__)
 #define SOMA_CRITICAL(...)      ::SOMA_ENGINE::Logger::GetClientLogger()->critical(__VA_ARGS__)
-#define SOMA_DEBUG(...)			::SOMA_ENGINE::Logger::GetCoreLogger()->debug(__VA_ARGS__)
+#define SOMA_DEBUG(...)			::SOMA_ENGINE::Logger::GetClientLogger()->debug(__VA_ARGS__)

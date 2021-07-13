@@ -1,4 +1,370 @@
-[10:00:58] [debug] SOMA: Logger Initialized
-[10:00:59] [debug] SOMA: SDL Window Created: SandBox (1280,730)
-[10:01:00] [debug] SOMA: 33.333333333333336 ms , FPS 30
-[10:01:01] [debug] SOMA: Event Fired: WindowClose
+[15:38:28] [debug] SOMA: Logger Initialized
+[15:38:29] [debug] SOMA: SDL Window Created: SandBox (1280,730)
+[15:38:29] [debug] SOMA: Event Fired: MouseMovedEvent: 300, 431
+[15:38:29] [debug] SOMA: Event Fired: MouseMovedEvent: 249, 376
+[15:38:29] [debug] SOMA: Event Fired: MouseMovedEvent: 249, 376
+[15:38:29] [debug] SOMA: Event Fired: MouseMovedEvent: 234, 271
+[15:38:29] [debug] SOMA: Event Fired: MouseMovedEvent: 230, 132
+[15:38:29] [debug] SOMA: Event Fired: MouseMovedEvent: 234, 77
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 488, 156
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 480, 153
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 475, 150
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 456, 142
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 438, 135
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 427, 130
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 418, 129
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 413, 129
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 408, 131
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 407, 139
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 407, 143
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 407, 154
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 413, 168
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 418, 171
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 436, 176
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 462, 175
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 492, 174
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 497, 177
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 498, 177
+[15:38:30] [debug] SOMA: 38.46153846153846 ms , FPS 26
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 498, 178
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 496, 179
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 493, 180
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 491, 180
+[15:38:30] [debug] SOMA: Event Fired: MouseMovedEvent: 490, 180
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 489, 180
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 489, 179
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 488, 179
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 487, 179
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 487, 178
+[15:38:31] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 479, 178
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 460, 177
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 446, 174
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 439, 172
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 426, 168
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 412, 162
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 400, 158
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 393, 156
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 389, 155
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 385, 153
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 380, 151
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 375, 149
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 371, 146
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 369, 145
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 367, 144
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 365, 143
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 364, 142
+[15:38:31] [debug] SOMA: Event Fired: MouseMovedEvent: 362, 142
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 361, 141
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 365, 136
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 366, 130
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 366, 123
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 363, 117
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 358, 112
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 355, 106
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 353, 94
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 352, 89
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 351, 86
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 351, 81
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 351, 75
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 351, 73
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 348, 70
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 346, 69
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 346, 67
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 345, 66
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 344, 62
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 344, 59
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 344, 57
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 344, 56
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 344, 55
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 346, 54
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 348, 53
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 350, 53
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 354, 53
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 354, 52
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 356, 52
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 359, 52
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 362, 51
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 366, 51
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 371, 50
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 374, 48
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 379, 47
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 381, 46
+[15:38:32] [debug] SOMA: Event Fired: MouseButtonPressedEvent: 0
+[15:38:32] [info] APP: MouseButtonPressedEvent! 0
+[15:38:32] [debug] SOMA: Event Fired: MouseButtonReleasedEvent: 0
+[15:38:32] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 382, 50
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 383, 57
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 385, 64
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 387, 70
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 388, 75
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 391, 80
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 392, 84
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 396, 88
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 399, 90
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 401, 91
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 404, 94
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 407, 96
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 409, 97
+[15:38:32] [debug] SOMA: Event Fired: MouseMovedEvent: 410, 99
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 410, 100
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 411, 102
+[15:38:33] [debug] SOMA: Event Fired: MouseButtonPressedEvent: 0
+[15:38:33] [info] APP: MouseButtonPressedEvent! 0
+[15:38:33] [debug] SOMA: Event Fired: MouseButtonReleasedEvent: 0
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 411, 103
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 404, 104
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 396, 106
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 393, 107
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 391, 108
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 389, 108
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 388, 109
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 385, 110
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 383, 111
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 382, 111
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 381, 112
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 379, 113
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 378, 113
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 377, 113
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 375, 113
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 374, 113
+[15:38:33] [debug] SOMA: Event Fired: MouseMovedEvent: 373, 113
+[15:38:33] [debug] SOMA: Event Fired: MouseButtonPressedEvent: 0
+[15:38:33] [info] APP: MouseButtonPressedEvent! 0
+[15:38:33] [debug] SOMA: Event Fired: MouseButtonReleasedEvent: 0
+[15:38:33] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:33] [debug] SOMA: Event Fired: KeyPressedEvent: 4 (0 repeats)
+[15:38:33] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:34] [debug] SOMA: Event Fired: KeyReleasedEvent: 4
+[15:38:34] [debug] SOMA: Event Fired: KeyPressedEvent: 22 (0 repeats)
+[15:38:34] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:34] [debug] SOMA: Event Fired: KeyReleasedEvent: 22
+[15:38:34] [debug] SOMA: Event Fired: KeyPressedEvent: 7 (0 repeats)
+[15:38:34] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:34] [debug] SOMA: Event Fired: KeyReleasedEvent: 7
+[15:38:34] [debug] SOMA: Event Fired: MouseMovedEvent: 373, 112
+[15:38:34] [debug] SOMA: Event Fired: KeyPressedEvent: 29 (0 repeats)
+[15:38:34] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:34] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:34] [debug] SOMA: Event Fired: KeyReleasedEvent: 29
+[15:38:35] [debug] SOMA: Event Fired: KeyPressedEvent: 27 (0 repeats)
+[15:38:35] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:35] [debug] SOMA: Event Fired: KeyReleasedEvent: 27
+[15:38:35] [debug] SOMA: Event Fired: KeyPressedEvent: 6 (0 repeats)
+[15:38:35] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:35] [debug] SOMA: Event Fired: KeyReleasedEvent: 6
+[15:38:35] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[15:38:35] [debug] SOMA: Event Fired: KeyPressedEvent: 225 (0 repeats)
+[15:38:36] [debug] SOMA: Event Fired: KeyPressedEvent: 30 (0 repeats)
+[15:38:36] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:36] [debug] SOMA: Event Fired: KeyReleasedEvent: 30
+[15:38:36] [debug] SOMA: Event Fired: KeyReleasedEvent: 225
+[15:38:36] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:37] [debug] SOMA: Event Fired: KeyPressedEvent: 31 (0 repeats)
+[15:38:37] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:37] [debug] SOMA: Event Fired: KeyReleasedEvent: 31
+[15:38:37] [debug] SOMA: Event Fired: KeyPressedEvent: 30 (0 repeats)
+[15:38:37] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:37] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:38] [debug] SOMA: Event Fired: KeyReleasedEvent: 30
+[15:38:38] [debug] SOMA: Event Fired: KeyPressedEvent: 225 (0 repeats)
+[15:38:38] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:38] [debug] SOMA: Event Fired: KeyPressedEvent: 30 (0 repeats)
+[15:38:38] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:39] [debug] SOMA: Event Fired: KeyReleasedEvent: 30
+[15:38:39] [debug] SOMA: Event Fired: KeyPressedEvent: 30 (0 repeats)
+[15:38:39] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:39] [debug] SOMA: Event Fired: KeyReleasedEvent: 30
+[15:38:39] [debug] SOMA: Event Fired: KeyPressedEvent: 30 (0 repeats)
+[15:38:39] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:39] [debug] SOMA: Event Fired: KeyReleasedEvent: 30
+[15:38:39] [debug] SOMA: Event Fired: KeyPressedEvent: 30 (0 repeats)
+[15:38:39] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:39] [debug] SOMA: Event Fired: KeyReleasedEvent: 30
+[15:38:39] [debug] SOMA: Event Fired: KeyReleasedEvent: 225
+[15:38:39] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:40] [debug] SOMA: Event Fired: KeyPressedEvent: 20 (0 repeats)
+[15:38:40] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:40] [debug] SOMA: Event Fired: KeyPressedEvent: 26 (0 repeats)
+[15:38:40] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:40] [debug] SOMA: Event Fired: KeyReleasedEvent: 20
+[15:38:40] [debug] SOMA: Event Fired: KeyPressedEvent: 8 (0 repeats)
+[15:38:40] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:40] [debug] SOMA: Event Fired: KeyReleasedEvent: 26
+[15:38:40] [debug] SOMA: Event Fired: KeyReleasedEvent: 8
+[15:38:40] [debug] SOMA: Event Fired: KeyPressedEvent: 4 (0 repeats)
+[15:38:40] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:40] [debug] SOMA: Event Fired: KeyReleasedEvent: 4
+[15:38:40] [debug] SOMA: Event Fired: KeyPressedEvent: 22 (0 repeats)
+[15:38:40] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:40] [debug] SOMA: Event Fired: KeyPressedEvent: 7 (0 repeats)
+[15:38:40] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:40] [debug] SOMA: Event Fired: KeyReleasedEvent: 22
+[15:38:40] [debug] SOMA: Event Fired: KeyReleasedEvent: 7
+[15:38:41] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:41] [debug] SOMA: Event Fired: KeyPressedEvent: 29 (0 repeats)
+[15:38:41] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:41] [debug] SOMA: Event Fired: KeyReleasedEvent: 29
+[15:38:41] [debug] SOMA: Event Fired: KeyPressedEvent: 25 (0 repeats)
+[15:38:41] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:41] [debug] SOMA: Event Fired: KeyReleasedEvent: 25
+[15:38:41] [debug] SOMA: Event Fired: KeyPressedEvent: 27 (0 repeats)
+[15:38:41] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:41] [debug] SOMA: Event Fired: KeyPressedEvent: 6 (0 repeats)
+[15:38:41] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:41] [debug] SOMA: Event Fired: KeyReleasedEvent: 27
+[15:38:41] [debug] SOMA: Event Fired: KeyPressedEvent: 25 (0 repeats)
+[15:38:41] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:41] [debug] SOMA: Event Fired: KeyReleasedEvent: 6
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 380, 115
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 397, 122
+[15:38:41] [debug] SOMA: Event Fired: KeyReleasedEvent: 25
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 424, 128
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 457, 131
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 485, 134
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 503, 135
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 509, 136
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 516, 137
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 520, 137
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 521, 137
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 520, 137
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 519, 137
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 518, 136
+[15:38:41] [debug] SOMA: Event Fired: MouseMovedEvent: 517, 135
+[15:38:42] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[15:38:42] [debug] SOMA: Event Fired: KeyPressedEvent: 22 (0 repeats)
+[15:38:42] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:42] [debug] SOMA: Event Fired: KeyReleasedEvent: 22
+[15:38:42] [debug] SOMA: Event Fired: KeyPressedEvent: 22 (0 repeats)
+[15:38:42] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:42] [debug] SOMA: Event Fired: KeyReleasedEvent: 22
+[15:38:42] [debug] SOMA: Event Fired: KeyPressedEvent: 22 (0 repeats)
+[15:38:42] [debug] SOMA: Event Fired: KeyTypedEvent: 19762
+[15:38:43] [debug] SOMA: Event Fired: KeyReleasedEvent: 22
+[15:38:43] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 517, 133
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 517, 127
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 518, 122
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 518, 120
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 519, 116
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 520, 112
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 520, 107
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 521, 104
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 522, 101
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 522, 100
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 523, 99
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 524, 99
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 524, 98
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 525, 97
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 526, 97
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 527, 97
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 529, 97
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 531, 95
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 533, 93
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 535, 92
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 536, 90
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 537, 90
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 538, 87
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 540, 85
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 540, 84
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 541, 83
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 542, 81
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 545, 79
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 546, 78
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 546, 77
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 547, 77
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 547, 75
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 548, 74
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 548, 72
+[15:38:43] [debug] SOMA: Event Fired: MouseMovedEvent: 548, 71
+[15:38:44] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:44] [debug] SOMA: Event Fired: MouseButtonPressedEvent: 0
+[15:38:44] [info] APP: MouseButtonPressedEvent! 0
+[15:38:44] [debug] SOMA: Event Fired: MouseButtonReleasedEvent: 0
+[15:38:45] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 564, 71
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 622, 70
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 727, 60
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 840, 50
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 914, 45
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 932, 43
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 935, 43
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 953, 45
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 977, 47
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 987, 48
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 1014, 48
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 1044, 45
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 1066, 42
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 1075, 41
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 1068, 42
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 1049, 47
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 1023, 57
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 976, 72
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 919, 88
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 855, 100
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 787, 107
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 760, 108
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 747, 108
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 742, 108
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 739, 108
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 738, 107
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 737, 106
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 737, 100
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 739, 94
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 746, 89
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 755, 83
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 770, 74
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 814, 59
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 862, 49
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 909, 41
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 942, 36
+[15:38:45] [debug] SOMA: Event Fired: MouseMovedEvent: 976, 34
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1014, 32
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1038, 32
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1052, 32
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1064, 32
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1074, 33
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1076, 34
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1076, 35
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1075, 36
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1072, 38
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1067, 41
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1049, 49
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1020, 63
+[15:38:46] [debug] SOMA: 16.129032258064516 ms , FPS 62
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 973, 78
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 926, 87
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 874, 93
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 842, 94
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 829, 87
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 824, 73
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 824, 59
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 826, 45
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 835, 33
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 852, 25
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 884, 22
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 931, 20
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 964, 21
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1025, 24
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1086, 27
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1119, 27
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1142, 27
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1156, 27
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1164, 29
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1164, 30
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1163, 30
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1162, 29
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1168, 25
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1193, 19
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1222, 12
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1248, 6
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1260, 4
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1266, 3
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1267, 3
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1267, 2
+[15:38:46] [debug] SOMA: Event Fired: MouseMovedEvent: 1265, 2
+[15:38:47] [debug] SOMA: Event Fired: MouseMovedEvent: 1263, 0
+[15:38:47] [debug] SOMA: Event Fired: MouseMovedEvent: 1260, 0
+[15:38:47] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[15:38:47] [debug] SOMA: Event Fired: WindowClose

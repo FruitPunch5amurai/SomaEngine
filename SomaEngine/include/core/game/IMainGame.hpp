@@ -33,7 +33,7 @@ public:
 	inline void processMessages(IApplicationEventHandler& eventHandler) {
 		eventProcessor->processMessages(eventHandler);
 	}
-
+	inline static IMainGame& Get() { return *s_Instance; }
 	void PushLayer(SOMA_ENGINE::Layer* layer);
 	void PushOverlay(SOMA_ENGINE::Layer* overlay);
 	void OnEvent(SOMA_ENGINE::Event& e);
@@ -68,4 +68,5 @@ protected:
 
 private:
 	bool OnWindowClose(SOMA_ENGINE::WindowCloseEvent& e);
+	static IMainGame* s_Instance;
 };

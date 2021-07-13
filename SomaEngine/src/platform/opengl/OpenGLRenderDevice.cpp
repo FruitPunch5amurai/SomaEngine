@@ -77,11 +77,6 @@ OpenGLRenderDevice::OpenGLRenderDevice(Window& window) :
 	//	DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR, "%s", glewGetErrorString(res));
 	//	throw std::runtime_error("Render device could not be initialized");
 	//}
-
-	gladLoadGLLoader(SDL_GL_GetProcAddress);
-	// Use v-sync
-	SDL_GL_SetSwapInterval(1);
-
 	struct FBOData fboWindowData;
 	fboWindowData.width = window.getWidth();
 	fboWindowData.height = window.getHeight();

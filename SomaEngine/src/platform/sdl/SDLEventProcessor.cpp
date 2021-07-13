@@ -56,15 +56,21 @@ void SDLEventProcessor::processMessages(IApplicationEventHandler& eventHandler)
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}
+			case SDL_TEXTINPUT:
+			{
+				SOMA_ENGINE::KeyTypedEvent ev(e.key.keysym.scancode,e.text.text);
+				m_sdlWindow->winData.EventCallback(ev);
+				break;
+			}
 			case SDL_MOUSEBUTTONDOWN:
 			{
-				SOMA_ENGINE::MouseButtonPressedEvent ev(e.button.type);
+				SOMA_ENGINE::MouseButtonPressedEvent ev(e.button.button - 1);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}
 			case SDL_MOUSEBUTTONUP:
 			{
-				SOMA_ENGINE::MouseButtonReleasedEvent ev(e.button.type);
+				SOMA_ENGINE::MouseButtonReleasedEvent ev(e.button.button - 1);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}

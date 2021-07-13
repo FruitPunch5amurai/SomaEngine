@@ -10,8 +10,13 @@
 #define BIND_EVENT_FN(x) std::bind(&IMainGame::x,this,std::placeholders::_1)
 
 
+IMainGame* IMainGame::s_Instance = nullptr; //Singleton
+
 IMainGame::IMainGame()
 {
+	SOMA_ASSERT(!s_Instance, "IMainGame already exists");
+	s_Instance = this;
+
 	m_sceneList = std::make_unique<SceneList>(this);
 }
 
@@ -89,11 +94,13 @@ void IMainGame::exitGame()
 void IMainGame::PushLayer(SOMA_ENGINE::Layer* layer)
 {
 	m_layerStack.PushLayer(layer);
+	layer->OnAttach();
 }
 
 void IMainGame::PushOverlay(SOMA_ENGINE::Layer* overlay)
 {
 	m_layerStack.PushOverlay(overlay);
+	overlay->OnAttach();
 }
 
 void IMainGame::OnEvent(SOMA_ENGINE::Event& e)
