@@ -1,0 +1,4 @@
+[10:00:58] [debug] SOMA: Logger Initialized
+[10:00:59] [debug] SOMA: SDL Window Created: SandBox (1280,730)
+[10:01:00] [debug] SOMA: 33.333333333333336 ms , FPS 30
+[10:01:01] [debug] SOMA: Event Fired: WindowClose

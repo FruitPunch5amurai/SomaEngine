@@ -1,0 +1,14 @@
+bin
+bin-int
+SomaEngine/vendor/Glad/bin
+SomaEngine/vendor/Glad/bin-int
+
+SomaEngine/vendor/imgui/bin
+SomaEngine/vendor/imgui/bin-int
+
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+*.sln
+.vs

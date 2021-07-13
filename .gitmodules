@@ -1,0 +1,6 @@
+[submodule "SomaEngine/vendor/spdlog"]
+	path = SomaEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "SomaEngine/vendor/imgui"]
+	path = SomaEngine/vendor/imgui
+	url = https://github.com/TheCherno/imgui.git

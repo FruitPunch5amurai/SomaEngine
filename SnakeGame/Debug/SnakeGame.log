@@ -1,0 +1,8 @@
+﻿  MainGame.cpp
+  SnakeGame.cpp
+  TestScene.cpp
+C:\Users\fruit\Desktop\Engines\SomaEngine\SomaEngine\SnakeGame\LerpSystem.h(35,27): warning C4244: 'initializing': conversion from 'float' to 'uint32', possible loss of data
+C:\Users\fruit\Desktop\Engines\SomaEngine\SomaEngine\SnakeGame\LerpSystem.h(36,24): warning C4244: 'initializing': conversion from 'float' to 'uint32', possible loss of data
+  Generating Code...
+SomaEngine.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SomaEngine.lib(stb_image_aug.obj)' or at 'C:\Users\fruit\Desktop\Engines\SomaEngine\SomaEngine\Debug\SOIL.pdb'; linking object as if no debug info
+  SnakeGame.vcxproj -> C:\Users\fruit\Desktop\Engines\SomaEngine\SomaEngine\Debug\SnakeGame.exe

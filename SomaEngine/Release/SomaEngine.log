@@ -1,0 +1,7 @@
+﻿  SystemsManager.cpp
+opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+assimp-vc142-mtd.lib(assimp-vc142-mtd.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+ModelLoader.obj : warning LNK4006: "public: unsigned int __thiscall aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QBEIW4aiTextureType@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
+ModelLoader.obj : warning LNK4006: "public: enum aiReturn __thiscall aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QBE?AW4aiReturn@@W4aiTextureType@@IPAUaiString@@PAW4aiTextureMapping@@PAIPAMPAW4aiTextureOp@@PAW4aiTextureMapMode@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
+  SomaEngine.vcxproj -> C:\Users\fruit\Desktop\Engines\SomaEngine\SomaEngine\Release\SomaEngine.lib
