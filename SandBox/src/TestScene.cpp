@@ -42,7 +42,7 @@ void TestScene::destroy()
 void TestScene::onEntry()
 {
 
-	m_fpCamera = new FPCamera(*m_game->window, m_game->eventHandler);
+	m_fpCamera = new FPCamera(*m_game->window, m_game->inputHandler);
 	m_fpCamera->transform.setTranslation(Vector3f(0.0f, 0.0f, 11.0f));
 	uniformBufferArray.push_back(m_fpCamera->GetProjection()); //Matrix::perspective(Math::toRadians(70.0f / 2.0f), 4.0f / 3.0f, 0.1f, 1000.0f));
 	uniformBufferArray.push_back(m_fpCamera->GetViewMatrix()); //Matrix::perspective(Math::toRadians(70.0f / 2.0f), 4.0f / 3.0f, 0.1f, 1000.0f));
@@ -69,10 +69,6 @@ void TestScene::onEntry()
 	model->loadTextures(&m_game->resourceManager, *m_game->renderDevice, OpenGLRenderDevice::PixelFormat::FORMAT_RGBA);*/
 
 	entt::entity previousEnt;
-
-
-	this->m_game->PushOverlay(new SOMA_ENGINE::ImGuiLayer());
-
 }
 
 void TestScene::onExit()
@@ -89,12 +85,12 @@ void TestScene::draw(float dt)
 {
 	if (m_renderContext == nullptr)
 		return;
-	/*m_renderContext->clear(Color(0.0f, 0.15f, 0.3f), true);*/
 
-	/*Draw things here*/
-	uniformBufferArray[1] = m_fpCamera->GetViewMatrix();
-	uniformBuffer->update(&uniformBufferArray[0]);
-	/*================*/
+	m_renderContext->clear(Color(0.0f, 0.15f, 0.3f), true);
+	///*Draw things here*/
+	//uniformBufferArray[1] = m_fpCamera->GetViewMatrix();
+	//uniformBuffer->update(&uniformBufferArray[0]);
+	///*================*/
 
-	m_renderContext->flush();
+	//m_renderContext->flush();
 }

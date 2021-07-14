@@ -12,22 +12,19 @@ namespace SOMA_ENGINE {
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach();
-		void OnDetach();
-		void OnUpdate();
-		void OnEvent(Event& event);
+
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		virtual void OnImGuiRender() override;
+		virtual void OnEvent(Event& event) override;
+
+		void Begin();
+		void End();
+
+		void BlockEvents(bool block) { m_BlockEvents = block; }
+
+		void SetDarkThemeColors();
 	private:
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
-		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
-		bool OnMouseMovedEvent(MouseMovedEvent& e);
-		bool OnMouseScrolledEvent(MouseScrolledEvent& e);
-		bool OnKeyPressedEvent(KeyPressedEvent& e);
-		bool OnKeyReleasedEvent(KeyReleasedEvent& e);
-		bool OnKeyTypedEvent(KeyTypedEvent& e);
-		bool OnWindowResizeEvent(WindowResizeEvent& e);
-
-
-		float m_time = 0.0f;
-		SDL_Cursor* g_MouseCursors[9] = {};
+		bool m_BlockEvents = true;
 	};
 }

@@ -1,11 +1,11 @@
 #pragma once
 #include "core/common.hpp"
 namespace SOMA_ENGINE {
-#ifdef SOMA_PLATFORM_SDL
+
 	using KeyCode = uint16;
 
 	namespace Key {
-
+#ifdef SOMA_PLATFORM_SDL
 		enum : KeyCode {
  SDL_SCANCODE_UNKNOWN = 0,
 
@@ -372,6 +372,7 @@ namespace SOMA_ENGINE {
     SDL_NUM_SCANCODES = 512 /**< not a key, just marks the number of scancodes
                                  for array bounds */
 		};
-	}
 #endif
+	}
+
 }

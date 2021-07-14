@@ -9,6 +9,7 @@
 #include <core/game/ResourceManager.hpp>
 #include <core/EventProcessor.hpp>
 #include <core/LayerStack.hpp>
+#include <imgui/ImGuiLayer.hpp>
 
 #include "events/ApplicationEvent.hpp"
 
@@ -34,6 +35,7 @@ public:
 		eventProcessor->processMessages(eventHandler);
 	}
 	inline static IMainGame& Get() { return *s_Instance; }
+	SOMA_ENGINE::ImGuiLayer* GetImGuiLayer() { return m_imGuiLayer; }
 	void PushLayer(SOMA_ENGINE::Layer* layer);
 	void PushOverlay(SOMA_ENGINE::Layer* overlay);
 	void OnEvent(SOMA_ENGINE::Event& e);
@@ -67,6 +69,7 @@ protected:
 	bool running = true;
 
 private:
+	SOMA_ENGINE::ImGuiLayer* m_imGuiLayer;
 	bool OnWindowClose(SOMA_ENGINE::WindowCloseEvent& e);
 	static IMainGame* s_Instance;
 };

@@ -2,11 +2,12 @@
 
 #include "core/common.hpp"
 namespace SOMA_ENGINE {
-#ifdef SOMA_PLATFORM_SDL
+
 	using MouseCode = uint16_t;
 
 	namespace Mouse
 	{
+#ifdef SOMA_PLATFORM_SDL
 		enum : MouseCode
 		{
 			MOUSE_LEFT_BUTTON = 0,
@@ -15,6 +16,7 @@ namespace SOMA_ENGINE {
 			MOUSE_WHEEL_UP = 3,
 			MOUSE_WHEEL_DOWN = 4
 		};
-	}
 #endif
+	}
+
 }

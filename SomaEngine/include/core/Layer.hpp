@@ -12,6 +12,7 @@ namespace SOMA_ENGINE {
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
 		virtual void OnUpdate() {}
+		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
 		inline const SOMA_String& GetName() const { return m_name; }

@@ -38,6 +38,12 @@ void SDLEventProcessor::processMessages(IApplicationInputHandler& eventHandler)
 					m_sdlWindow->winData.EventCallback(ev);
 					break;
 				}
+				case SDL_WINDOWEVENT_CLOSE:
+				{
+					SOMA_ENGINE::WindowCloseEvent ev;
+					m_sdlWindow->winData.EventCallback(ev);
+					break;
+				}
 				default:
 					break;
 			}
@@ -85,12 +91,7 @@ void SDLEventProcessor::processMessages(IApplicationInputHandler& eventHandler)
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}
-			case SDL_QUIT:
-			{
-				SOMA_ENGINE::WindowCloseEvent ev;
-				m_sdlWindow->winData.EventCallback(ev);
-				break;
-			}
+
 			default:
 				break;
 			};

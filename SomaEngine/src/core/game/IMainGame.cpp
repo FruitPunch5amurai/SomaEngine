@@ -58,17 +58,20 @@ void IMainGame::run()
 		while (frameTime > 0.0) {
 			float deltaTime = Math::min(frameTime, dt);
 			update(deltaTime);
+			for (SOMA_ENGINE::Layer* layer : m_layerStack)
+				layer->OnUpdate();
 			frameTime -= deltaTime;
 			t += deltaTime;
 			shouldRender = true;
 		}
 		if (shouldRender) {
 			draw(0.0);
+
 		}
 
 		processMessages(inputHandler);
-		for (SOMA_ENGINE::Layer* layer : m_layerStack)
-			layer->OnUpdate();
+
+
 	}
 	exitGame();
 }
@@ -110,8 +113,6 @@ void IMainGame::OnEvent(SOMA_ENGINE::Event& e)
 	evtDispatcher.Dispatch<SOMA_ENGINE::WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
 	SOMA_CORE_DEBUG("Event Fired: {0}", e.ToString());
-
-	if(inputHandler.)
 
 	/*Handle the event for each layer*/
 	for (auto it = m_layerStack.end(); it != m_layerStack.begin();)
@@ -155,10 +156,16 @@ void IMainGame::update(float dt)
 void IMainGame::draw(float dt)
 {
 	if (m_currentScene && m_currentScene->getState() == ScreenState::RUNNING)
-	{
 		m_currentScene->draw(dt);
-		window->update();
+	
+	m_imGuiLayer->Begin();
+	{
+		for (SOMA_ENGINE::Layer* layer : m_layerStack)
+			layer->OnImGuiRender();
 	}
+	m_imGuiLayer->End();
+
+	window->update();
 }
 
 bool IMainGame::initialize()
@@ -191,6 +198,9 @@ bool IMainGame::initializeSystems()
 
 	renderDevice = new RenderDevice(*window);
 	renderTarget = new RenderTarget(*renderDevice);
+
+	m_imGuiLayer = new SOMA_ENGINE::ImGuiLayer();
+	PushOverlay(m_imGuiLayer);
 
 	return true;
 }
