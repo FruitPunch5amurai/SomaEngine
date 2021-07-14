@@ -21,14 +21,20 @@ include "SomaEngine/vendor/imgui"
 
 project "SomaEngine"
 	location "SomaEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	pchheader "somapch.hpp"
 	pchsource "SomaEngine/src/somapch.cpp"
+
+		defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
 
 	files
 	{
@@ -98,8 +104,10 @@ project "SandBox"
 		"%{prj.name}/include",
 		"Deps/include",
 		"SomaEngine/include",
+		"SomaEngine/src",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"SomaEngine/vendor"
 	}
 	
 	libdirs { "Deps/lib/x64" }

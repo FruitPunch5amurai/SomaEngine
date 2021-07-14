@@ -1,9 +1,7 @@
 #pragma once
 #include <core/game/IMainGame.hpp>
 #include <core/game/IScene.hpp>
-#include <camera/FPCamera.hpp>
 #include <entt/entt.hpp>
-#include <entt/SystemsManager.hpp>
 #include <rendering/Model.hpp>
 class TestScene : public IScene {
 public:
@@ -30,7 +28,6 @@ public:
 private:
 
 	GameRenderContext* m_renderContext;
-	FPCamera* m_fpCamera;
 
 	Model* model;
 
@@ -44,7 +41,6 @@ private:
 	UniformBuffer* uniformBuffer;
 	SOMA_Array<Matrix> uniformBufferArray;
 
-	SystemsManager systemsManager;
 	entt::registry enttRegistry;
 	entt::dispatcher eventDispatcher;
 
