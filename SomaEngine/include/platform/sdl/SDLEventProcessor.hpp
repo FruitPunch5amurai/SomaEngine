@@ -5,7 +5,7 @@ class SOMA_API SDLEventProcessor : public GenericEventProcessor {
 public:
 	SDLEventProcessor(SDLWindow* genericWindow);
 	virtual ~SDLEventProcessor();
-	void processMessages(IApplicationEventHandler& eventHandler) override;
+	void processMessages(IApplicationInputHandler& eventHandler) override;
 
 
 private:

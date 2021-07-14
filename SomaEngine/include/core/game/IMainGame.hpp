@@ -5,7 +5,7 @@
 #include <rendering/RenderDevice.hpp>
 #include <rendering/RenderTarget.hpp>
 #include <GameRenderContext.hpp>
-#include <GameEventHandler.hpp>
+#include <InputHandler.hpp>
 #include <core/game/ResourceManager.hpp>
 #include <core/EventProcessor.hpp>
 #include <core/LayerStack.hpp>
@@ -30,7 +30,7 @@ public:
 	//Window GetWindow() { return m_window; }
 	//Window* GetWindowPointer() { return &m_window; }
 	float getDeltaTime() { return m_deltaTime; }
-	inline void processMessages(IApplicationEventHandler& eventHandler) {
+	inline void processMessages(IApplicationInputHandler& eventHandler) {
 		eventProcessor->processMessages(eventHandler);
 	}
 	inline static IMainGame& Get() { return *s_Instance; }
@@ -44,7 +44,7 @@ public:
 	RenderDevice* renderDevice;
 	RenderTarget* renderTarget;
 	Window* window;
-	GameEventHandler eventHandler;
+	InputHandler inputHandler;
 
 protected:
 	virtual void update(float dt);

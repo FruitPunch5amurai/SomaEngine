@@ -6,7 +6,7 @@
 const float CAMERA_SENSITIVITY = 0.01f;
 const float CAMERA_SPEED = 10.0f;
 
-FPCamera::FPCamera(Window& window, GameEventHandler& eventHandler, bool ortho) :m_window(&window), m_Ortho(ortho) {
+FPCamera::FPCamera(Window& window, InputHandler& eventHandler, bool ortho) :m_window(&window), m_Ortho(ortho) {
 	if (m_Ortho)
 		CalculateOrthoProjection();
 	else

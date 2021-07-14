@@ -66,7 +66,7 @@ void IMainGame::run()
 			draw(0.0);
 		}
 
-		processMessages(eventHandler);
+		processMessages(inputHandler);
 		for (SOMA_ENGINE::Layer* layer : m_layerStack)
 			layer->OnUpdate();
 	}
@@ -111,6 +111,8 @@ void IMainGame::OnEvent(SOMA_ENGINE::Event& e)
 
 	SOMA_CORE_DEBUG("Event Fired: {0}", e.ToString());
 
+	if(inputHandler.)
+
 	/*Handle the event for each layer*/
 	for (auto it = m_layerStack.end(); it != m_layerStack.begin();)
 	{
@@ -118,30 +120,6 @@ void IMainGame::OnEvent(SOMA_ENGINE::Event& e)
 		if (e.Handled)
 			break;
 	}
-	//switch (e.type) {
-	//case SDL_KEYDOWN:
-	//{
-	//	//eventHandler.onKeyDown(e.key.keysym.scancode, e.key.repeat != 0);
-	//	break;
-	//}
-	//case SDL_KEYUP:
-	//	//eventHandler.onKeyUp(e.key.keysym.scancode, e.key.repeat != 0);
-	//	break;
-	//case SDL_MOUSEBUTTONDOWN:
-	//	//eventHandler.onMouseDown(e.button.type, e.button.clicks);
-	//	break;
-	//case SDL_MOUSEBUTTONUP:
-	//	//eventHandler.onMouseUp(e.button.type, e.button.clicks);
-	//	break;
-	//case SDL_MOUSEMOTION:
-	//	//eventHandler.onMouseMove(e.motion.x, e.motion.y, e.motion.xrel, e.motion.yrel);
-	//	break;
-	//case SDL_QUIT:
-	//	//running = false;
-	//	break;
-	//default:
-	//	break;
-	//};
 }
 
 void IMainGame::update(float dt)

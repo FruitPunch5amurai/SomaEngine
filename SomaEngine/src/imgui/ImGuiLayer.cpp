@@ -136,9 +136,10 @@ namespace SOMA_ENGINE {
 		ImGuiIO& io = ImGui::GetIO();
 		io.KeysDown[e.GetKeyCode()] = true;
 
-		io.KeyCtrl = io.KeysDown[SDLK_LCTRL] || io.KeysDown[SDLK_RCTRL];
-		io.KeyShift = io.KeysDown[SDLK_LSHIFT] || io.KeysDown[SDLK_RSHIFT];
-		io.KeyAlt = io.KeysDown[SDLK_LALT] || io.KeysDown[SDLK_RALT];
+		/*TODO: Need to fix, Throws error*/
+		//io.KeyCtrl = io.KeysDown[SDLK_LCTRL] || io.KeysDown[SDLK_RCTRL];
+		//io.KeyShift = io.KeysDown[SDLK_LSHIFT] || io.KeysDown[SDLK_RSHIFT];
+		//io.KeyAlt = io.KeysDown[SDLK_LALT] || io.KeysDown[SDLK_RALT];
 		
 		return false;
 	}

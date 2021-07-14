@@ -14,6 +14,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["Glad"] = "SomaEngine/vendor/Glad/include"
 IncludeDir["imgui"] = "SomaEngine/vendor/imgui"
+IncludeDir["glm"] = "SomaEngine/vendor/glm"
 
 include "SomaEngine/vendor/Glad"
 include "SomaEngine/vendor/imgui"
@@ -32,14 +33,16 @@ project "SomaEngine"
 	files
 	{
 		"%{prj.name}/include/**.hpp",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp"
 	}
 	includedirs
 	{
 		"%{prj.name}/include",
 		"Deps/include",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.imgui}"
+		"%{IncludeDir.imgui}",
+		"%{IncludeDir.glm}"
 	}
 	libdirs { "Deps/lib/x64" }
 
@@ -54,7 +57,8 @@ project "SomaEngine"
 		{
 				"SOMA_ENABLE_ASSERTS",
 				"SOMA_PLATFORM_WINDOWS",
-				"SOMA_BUILD_DLL"
+				"SOMA_BUILD_DLL",
+				"SOMA_PLATFORM_SDL"
 		}
 
 		postbuildcommands
@@ -94,7 +98,8 @@ project "SandBox"
 		"%{prj.name}/include",
 		"Deps/include",
 		"SomaEngine/include",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.glm}"
 	}
 	
 	libdirs { "Deps/lib/x64" }

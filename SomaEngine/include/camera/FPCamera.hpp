@@ -5,12 +5,12 @@
 #include "math/Transform.hpp"
 #include "core/Window.hpp"
 #include "InputControl.hpp"
-#include "GameEventHandler.hpp"
+#include "InputHandler.hpp"
 
 class SOMA_API FPCamera {
 
 public:
-	FPCamera(Window& window, GameEventHandler& eventHandler, bool ortho = false);
+	FPCamera(Window& window, InputHandler& eventHandler, bool ortho = false);
 	~FPCamera() {};
 		
 	Transform transform;
