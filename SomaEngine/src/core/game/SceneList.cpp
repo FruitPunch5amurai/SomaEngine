@@ -40,7 +40,7 @@ void SceneList::setScene(int nextScene)
 
 void SceneList::addScene(IScene* newScene)
 {
-	newScene->m_sceneIndex = m_scenes.size();
+	newScene->m_sceneIndex = (int)m_scenes.size();
 	m_scenes.push_back(newScene);
 	newScene->build();
 	newScene->setParentGame(m_game);

@@ -5,7 +5,7 @@
 #include "dataStructures/array.hpp"
 
 namespace SOMA_ENGINE {
-	class SOMA_API LayerStack {
+	class  LayerStack {
 	public:
 		LayerStack();
 		~LayerStack();

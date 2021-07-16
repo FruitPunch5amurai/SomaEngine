@@ -7,7 +7,7 @@
 #include "events/MouseEvent.hpp"
 #include "events/ApplicationEvent.hpp"
 namespace SOMA_ENGINE {
-	class SOMA_API ImGuiLayer : public Layer {
+	class  ImGuiLayer : public Layer {
 	public:
 		ImGuiLayer();
 		~ImGuiLayer();

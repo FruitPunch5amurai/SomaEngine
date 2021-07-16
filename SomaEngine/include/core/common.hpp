@@ -91,10 +91,6 @@ typedef uintptr_t uintptr;
 #define CONSTEXPR constexpr
 //#endif
 
-#define NULL_COPY_AND_ASSIGN(T) \
-	T(const T& other) {(void)other;} \
-	void operator=(const T& other) { (void)other; }
-
 #define LOG_ERROR "Error"
 #define LOG_WARNING "Warning"
 #define LOG_TYPE_RENDERER "Renderer"
@@ -116,7 +112,7 @@ typedef uintptr_t uintptr;
 
 #ifdef SOMA_PLATFORM_WINDOWS
 	#ifdef SOMA_BUILD_DLL
-		#define SOMA_API __declspec(dllexport)
+		#define  SOMA_API __declspec(dllexport)
 	#else
 		#define SOMA_API __declspec(dllimport)
 	#endif

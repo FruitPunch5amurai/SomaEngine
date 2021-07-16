@@ -4,7 +4,6 @@
 #include "MainGame.hpp"
 #include "TestScene.hpp"
 
-
 MainGame::MainGame()
 {
 	m_windowTitle = "SandBox";

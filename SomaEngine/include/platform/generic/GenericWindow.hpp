@@ -13,7 +13,7 @@ struct WindowProps {
 
 };
 
-class SOMA_API GenericWindow {
+class  GenericWindow {
 public:
 	using EventCallbackFn = std::function<void(SOMA_ENGINE::Event&)>;
 

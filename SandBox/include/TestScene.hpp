@@ -27,7 +27,7 @@ public:
 
 private:
 
-	GameRenderContext* m_renderContext;
+	RenderContext* m_renderContext;
 
 	Model* model;
 
@@ -43,5 +43,9 @@ private:
 
 	entt::registry enttRegistry;
 	entt::dispatcher eventDispatcher;
+
+	/*OpenGL Test*/
+	unsigned int m_vertexArray, m_vertexBuffer, m_indexBuffer;
+	Shader* m_testShader;
 
 };

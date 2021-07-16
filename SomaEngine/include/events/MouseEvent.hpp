@@ -6,7 +6,7 @@
 
 namespace SOMA_ENGINE {
 
-	class SOMA_API MouseMovedEvent : public Event
+	class  MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(const float x, const float y)
@@ -28,7 +28,7 @@ namespace SOMA_ENGINE {
 		float m_MouseX, m_MouseY;
 	};
 
-	class SOMA_API MouseScrolledEvent : public Event
+	class  MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(const float xOffset, const float yOffset)
@@ -50,7 +50,7 @@ namespace SOMA_ENGINE {
 		float m_XOffset, m_YOffset;
 	};
 
-	class SOMA_API MouseButtonEvent : public Event
+	class  MouseButtonEvent : public Event
 	{
 	public:
 		MouseCode GetMouseButton() const { return m_Button; }
@@ -63,7 +63,7 @@ namespace SOMA_ENGINE {
 		MouseCode m_Button;
 	};
 
-	class SOMA_API MouseButtonPressedEvent : public MouseButtonEvent
+	class  MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(const MouseCode button)
@@ -79,7 +79,7 @@ namespace SOMA_ENGINE {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class SOMA_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class  MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(const MouseCode button)

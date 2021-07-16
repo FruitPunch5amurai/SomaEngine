@@ -102,6 +102,7 @@ uint32 IndexedModel::createVertexArray(RenderDevice& device,
 	uint32 numIndices = indices.size();
 
 	return device.createVertexArray(vertexData, vertexElementSizes,
-		numVertexComponents, numInstanceComponents, numVertices, &indices[0],
+		numVertexComponents, numInstanceComponents, numVertices, 
+		&indices[0],
 		numIndices, usage);
 }

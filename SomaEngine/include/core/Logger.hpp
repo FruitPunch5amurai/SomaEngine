@@ -9,7 +9,7 @@
 
 namespace SOMA_ENGINE {
 
-	class SOMA_API Logger {
+	class  Logger {
 	public:
 		Logger();
 		~Logger();

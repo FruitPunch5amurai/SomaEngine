@@ -4,7 +4,7 @@
 #include "events/Event.hpp"
 
 namespace SOMA_ENGINE {
-	class SOMA_API Layer {
+	class  Layer {
 	public:
 		Layer(const SOMA_String& name = "Layer");
 		virtual ~Layer();

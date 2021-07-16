@@ -5,7 +5,7 @@
 
 namespace SOMA_ENGINE {
 
-	class SOMA_API KeyEvent : public Event
+	class  KeyEvent : public Event
 	{
 	public:
 		KeyCode GetKeyCode() const { return m_KeyCode; }
@@ -38,7 +38,7 @@ namespace SOMA_ENGINE {
 		uint16_t m_RepeatCount;
 	};
 
-	class SOMA_API KeyReleasedEvent : public KeyEvent
+	class  KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(const KeyCode keycode)
@@ -54,7 +54,7 @@ namespace SOMA_ENGINE {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class SOMA_API KeyTypedEvent : public KeyEvent
+	class  KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(const KeyCode keycode,const char* text)

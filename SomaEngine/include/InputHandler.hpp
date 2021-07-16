@@ -5,7 +5,7 @@
 #include "InputControl.hpp"
 
 
-class SOMA_API InputHandler : public IApplicationInputHandler {
+class  InputHandler : public IApplicationInputHandler {
 public:
 	InputHandler() {}
 	virtual ~InputHandler() {}
@@ -22,6 +22,5 @@ public:
 private:
 	Map<uint32, SOMA_Array<std::pair<float, InputControl&>>> m_inputs;
 	void updateInput(uint32 inputCode, float dir, bool isRepeat);
-	NULL_COPY_AND_ASSIGN(InputHandler);
 
 };

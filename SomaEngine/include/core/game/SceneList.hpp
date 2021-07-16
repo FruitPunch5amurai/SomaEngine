@@ -5,7 +5,7 @@
 class IMainGame;
 class IScene;
 
-class SOMA_API SceneList {
+class  SceneList {
 public:
 	SceneList(IMainGame* game);
 	~SceneList();

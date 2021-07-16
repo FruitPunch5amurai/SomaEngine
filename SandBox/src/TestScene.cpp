@@ -41,26 +41,21 @@ void TestScene::destroy()
 
 void TestScene::onEntry()
 {
+	float vertices[3 * 3] = {
+		-0.5f,-0.5f,0.0f,
+		0.5f,-0.5f,-0.0f,
+		0.0f,0.5f,0.0f
+	};
+	uint32 indexes[3] = { 0,1,2 };
 
-	//m_fpCamera = new FPCamera(*m_game->window, m_game->inputHandler);
-	//m_fpCamera->transform.setTranslation(Vector3f(0.0f, 0.0f, 11.0f));
-	//uniformBufferArray.push_back(m_fpCamera->GetProjection()); //Matrix::perspective(Math::toRadians(70.0f / 2.0f), 4.0f / 3.0f, 0.1f, 1000.0f));
-	//uniformBufferArray.push_back(m_fpCamera->GetViewMatrix()); //Matrix::perspective(Math::toRadians(70.0f / 2.0f), 4.0f / 3.0f, 0.1f, 1000.0f));
-	//uniformBuffer = new UniformBuffer(*m_game->renderDevice, sizeof(Matrix) * 2, OpenGLRenderDevice::BufferUsage::USAGE_STATIC_DRAW, &uniformBufferArray[0]);
-	//Load Sampler
-	//sampler = new Sampler(*m_game->renderDevice, RenderDevice::FILTER_LINEAR_MIPMAP_LINEAR);
-	//Load a shader
-	/*shader = m_game->resourceManager.loadShader("./res/shaders/basicShader.glsl", *m_game->renderDevice);
-	shader->setUniformBuffer("Matrices", *uniformBuffer);*/
-
-	RenderDevice::DrawParams drawParams;
-	drawParams.primitiveType = RenderDevice::PRIMITIVE_TRIANGLES;
-	drawParams.faceCulling = RenderDevice::FACE_CULL_NONE;
-	drawParams.shouldWriteDepth = true;
-	drawParams.depthFunc = RenderDevice::DRAW_FUNC_LESS;
-
-	m_renderContext = new GameRenderContext(*m_game->renderDevice, *m_game->renderTarget, drawParams, *shader, *sampler);
-
+	m_vertexArray = m_game->renderDevice->GenSimpleVAO(vertices,
+		sizeof(vertices),
+		indexes,
+		sizeof(indexes),
+		OpenGLRenderDevice::BufferUsage::USAGE_STATIC_DRAW);
+	SOMA_String shaderText;
+	StringFuncs::loadTextFileWithIncludes(shaderText, "C:\\Users\\fruit\\Desktop\\Engines\\SomaEngine\\SomaEngine\\SandBox\\res\\shaders\\nullShader.glsl", "#include");
+	m_testShader = new Shader(*m_game->renderDevice, shaderText);
 	/*Systems*/
 	//systemsManager.Configure();
 
@@ -85,8 +80,15 @@ void TestScene::draw(float dt)
 {
 	if (m_renderContext == nullptr)
 		return;
+	m_game->renderDevice->ClearV2(true, true, false, Color(0.0f, 0.15f, 0.3f), 0);
+	RenderDevice::DrawParams drawParams;
+	drawParams.primitiveType = RenderDevice::PRIMITIVE_TRIANGLES;
+	drawParams.faceCulling = RenderDevice::FACE_CULL_NONE;
+	drawParams.shouldWriteDepth = true;
+	drawParams.depthFunc = RenderDevice::DRAW_FUNC_LESS;
 
-	m_renderContext->clear(Color(0.0f, 0.15f, 0.3f), true);
+	m_game->renderDevice->DrawV2(m_vertexArray,m_testShader->getId(), drawParams, 3);
+
 	///*Draw things here*/
 	//uniformBufferArray[1] = m_fpCamera->GetViewMatrix();
 	//uniformBuffer->update(&uniformBufferArray[0]);

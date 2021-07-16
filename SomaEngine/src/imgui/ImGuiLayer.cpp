@@ -42,7 +42,7 @@ namespace SOMA_ENGINE {
 		ImGui_ImplSDL2_InitForOpenGL((SDL_Window*)IMainGame::Get().window->windowHandle, IMainGame::Get().window->context);
 		ImGui_ImplOpenGL3_Init("#version 410");
 
-		io.DisplaySize = ImVec2(IMainGame::Get().window->getWidth(), IMainGame::Get().window->getHeight());
+		io.DisplaySize = ImVec2((float)IMainGame::Get().window->getWidth(), (float)IMainGame::Get().window->getHeight());
 
 	}
 	void ImGuiLayer::OnDetach()

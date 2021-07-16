@@ -1,37 +1,7 @@
-[11:53:40] [debug] SOMA: Logger Initialized
-[11:53:40] [debug] SOMA: SDL Window Created: SandBox (1280,730)
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 681, 407
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 684, 403
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 694, 386
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 716, 351
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 774, 275
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 800, 255
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 827, 234
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 864, 216
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 893, 203
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 940, 178
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 951, 170
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 954, 165
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 962, 161
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 992, 150
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 1050, 131
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 1083, 120
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 1143, 102
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 1184, 91
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 1201, 80
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 1205, 74
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 1205, 68
-[11:53:41] [debug] SOMA: 32.25806451612903 ms , FPS 31
-[11:53:41] [debug] SOMA: Event Fired: MouseMovedEvent: 1205, 67
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1207, 66
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1231, 48
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1246, 33
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1257, 23
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1260, 17
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1260, 15
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1260, 12
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1260, 9
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1261, 6
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1261, 4
-[11:53:42] [debug] SOMA: Event Fired: MouseMovedEvent: 1264, 0
-[11:53:42] [debug] SOMA: Event Fired: WindowClose
+[14:08:55] [debug] SOMA: Logger Initialized
+[14:08:56] [debug] SOMA: SDL Window Created: SandBox (1280,730)
+[14:08:56] [debug] SOMA: OpenGL Info: 
+[14:08:56] [debug] SOMA: ---Vendor:NVIDIA Corporation
+[14:08:56] [debug] SOMA: ---Renderer:NVIDIA GeForce GTX 1050/PCIe/SSE2
+[14:08:56] [debug] SOMA: ---Version:4.5.0 NVIDIA 466.27
+[14:08:57] [debug] SOMA: 27.77777777777778 ms , FPS 36

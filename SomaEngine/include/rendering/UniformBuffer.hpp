@@ -23,8 +23,6 @@ private:
 	RenderDevice* device;
 	uint32 deviceId;
 	uintptr size;
-
-	NULL_COPY_AND_ASSIGN(UniformBuffer);
 };
 
 inline uint32 UniformBuffer::getId()

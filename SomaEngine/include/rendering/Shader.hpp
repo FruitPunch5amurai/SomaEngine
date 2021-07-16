@@ -25,8 +25,6 @@ public:
 private:
 	RenderDevice* device;
 	uint32 deviceId;
-
-	NULL_COPY_AND_ASSIGN(Shader);
 };
 
 inline uint32 Shader::getId()

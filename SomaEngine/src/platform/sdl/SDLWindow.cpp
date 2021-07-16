@@ -4,9 +4,10 @@
 #include "rendering/RenderDevice.hpp"
 #include <stdexcept>
 #include <core/Logger.hpp>
+#ifdef SOMA_RENDER_OPENGL
 #include <glad/glad.h>
 #include <platform/opengl/OpenGLRenderDevice.hpp>
-
+#endif
 GenericWindow* GenericWindow::create(const WindowProps& props)
 {
 	return new SDLWindow(props);
@@ -31,12 +32,12 @@ void SDLWindow::Init(const WindowProps& props)
 	winData.width = props.width;
 	winData.height = props.height;
 	winData.title = props.title;
-	bool success = RenderDevice::globalInit();
 
-	SOMA_ASSERT(success, "SDL Window could not be initialized ");
-
+	window = SDL_CreateWindow(props.title.c_str(), SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED, props.width, props.height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	windowHandle = window;
+#ifdef SOMA_RENDER_OPENGL
 	SDL_GL_LoadLibrary(NULL);
-
 	// Request an OpenGL 4.5 context (should be core)
 	const char* glsl_version = "#version 410";
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, 0);
@@ -50,9 +51,6 @@ void SDLWindow::Init(const WindowProps& props)
 
 	SOMA_CORE_DEBUG("SDL Window Created: {0} ({1},{2})",props.title, props.width, props.height);
 
-	window = SDL_CreateWindow(props.title.c_str(), SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED, props.width, props.height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
-	windowHandle = window;
 	m_context = SDL_GL_CreateContext(window);
 	context = m_context;
 	SDL_GL_MakeCurrent(window, m_context);
@@ -61,8 +59,14 @@ void SDLWindow::Init(const WindowProps& props)
 	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
 		SOMA_CORE_ERROR("Failed to initialize the OpenGL context");
 	}
-
 	SOMA_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "Soma requires at least OpenGL version 4.5!");
+
+	SOMA_CORE_DEBUG("OpenGL Info: ");
+	SOMA_CORE_DEBUG("---Vendor:{0}", glGetString(GL_VENDOR));
+	SOMA_CORE_DEBUG("---Renderer:{0}", glGetString(GL_RENDERER));
+	SOMA_CORE_DEBUG("---Version:{0}", glGetString(GL_VERSION));
+
+#endif
 }
 void SDLWindow::Destroy()
 {
@@ -75,7 +79,10 @@ SDLWindow::~SDLWindow()
 
 void SDLWindow::update()
 {
+#ifdef SOMA_RENDER_OPENGL
 	SDL_GL_SwapWindow(window);
+#endif
 }
+
 
 

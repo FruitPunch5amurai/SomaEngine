@@ -76,7 +76,6 @@ Texture* TextureCache::loadTexture(SOMA_String filepath, RenderDevice& deviceIn,
 		ArrayBitmap image;
 		if (!image.load(filepath))
 		{
-			DEBUG_LOG("LOAD IMAGE", "ERROR", "Failed to load image: %s", filepath);
 			return nullptr;
 		}
 		Texture* tex = new Texture(deviceIn, image, format, true, false);

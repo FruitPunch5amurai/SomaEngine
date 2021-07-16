@@ -5,6 +5,7 @@
 
 #include <SDL/SDL.h>
 #include <core\memory.hpp>
+#include <core/Logger.hpp>
 static bool addShader(GLuint shaderProgram, const SOMA_String& text, GLenum type,
 	SOMA_Array<GLuint>* shaders);
 static void addAllAttributes(GLuint program, const SOMA_String& vertexShaderText, uint32 version);
@@ -17,34 +18,7 @@ bool OpenGLRenderDevice::isInitialized = false;
 
 bool OpenGLRenderDevice::globalInit()
 {
-	if (isInitialized) {
-		return isInitialized;
-	}
-	int32 major = 4;
-	int32 minor = 3;
-
-	isInitialized = true;
-	if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
-		SDL_GL_CONTEXT_PROFILE_CORE) != 0) {
-		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_WARNING,
-			"Could not set core OpenGL profile");
-		isInitialized = false;
-	}
-	if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, major) != 0) {
-		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR,
-			"Could not set major OpenGL version to %d: %s",
-			major, SDL_GetError());
-		isInitialized = false;
-	}
-	if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, minor) != 0) {
-		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR,
-			"Could not set minor OpenGL version to %d: %s",
-			minor, SDL_GetError());
-		isInitialized = false;
-	}
-
-
-	return isInitialized;
+	return true;
 }
 
 OpenGLRenderDevice::OpenGLRenderDevice(Window& window) :
@@ -94,6 +68,128 @@ OpenGLRenderDevice::~OpenGLRenderDevice()
 	SDL_GL_DeleteContext(context);
 }
 
+/*My Defined Things*/
+uint32 OpenGLRenderDevice::GenSimpleVAO(const float* vertexData, 
+	uint32 numVertices,
+	const uint32* indexData,
+	uint32 numIndices,
+	BufferUsage usage)
+{
+
+	uint32 VAO;
+	uint32 VBO;
+	uint32 IBO;
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+
+	glGenBuffers(1,&VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, numVertices * sizeof(float), vertexData, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
+	glGenBuffers(1, &IBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, numIndices * sizeof(uint32), indexData, GL_STATIC_DRAW);
+
+	return VAO;
+
+	//	unsigned int numBuffers = numVertexComponents + 1;
+	//GLuint* buffers = new GLuint[numBuffers];
+	//uintptr* bufferSizes = new uintptr[numBuffers];
+
+	//glGenVertexArrays(1, &VAO);
+	//setVAO(VAO);
+	//for (uint32 i = 0, attribute = 0; i < numBuffers - 1; i++) {
+	//	enum BufferUsage attribUsage = usage;
+	//	bool inInstancedMode = false;
+	//	if (i >= numVertexComponents) {
+	//		attribUsage = USAGE_DYNAMIC_DRAW;
+	//		inInstancedMode = true;
+	//	}
+
+	//	uint32 elementSize = vertexElementSizes[i];
+	//	const void* bufferData = inInstancedMode ? nullptr : vertexData[i];
+	//	uintptr dataSize = inInstancedMode
+	//		? elementSize * sizeof(float)
+	//		: elementSize * sizeof(float) * numVertices;
+
+	//	glBindBuffer(GL_ARRAY_BUFFER, buffers[i]);
+	//	glBufferData(GL_ARRAY_BUFFER, dataSize, bufferData, attribUsage);
+	//	bufferSizes[i] = dataSize;
+
+	//	// Because OpenGL doesn't support attributes with more than 4
+	//	// elements, each set of 4 elements gets its own attribute.
+	//	uint32 elementSizeDiv = elementSize / 4;
+	//	uint32 elementSizeRem = elementSize % 4;
+	//	for (uint32 j = 0; j < elementSizeDiv; j++) {
+	//		glEnableVertexAttribArray(attribute);
+	//		glVertexAttribPointer(attribute, 4, GL_FLOAT, GL_FALSE,
+	//			elementSize * sizeof(GLfloat),
+	//			(const GLvoid*)(sizeof(GLfloat) * j * 4));
+	//		if (inInstancedMode) {
+	//			glVertexAttribDivisor(attribute, 1);
+	//		}
+	//		attribute++;
+	//	}
+	//	if (elementSizeRem != 0) {
+	//		glEnableVertexAttribArray(attribute);
+	//		glVertexAttribPointer(attribute, elementSize, GL_FLOAT, GL_FALSE,
+	//			elementSize * sizeof(GLfloat),
+	//			(const GLvoid*)(sizeof(GLfloat) * elementSizeDiv * 4));
+	//		if (inInstancedMode) {
+	//			glVertexAttribDivisor(attribute, 1);
+	//		}
+	//		attribute++;
+	//	}
+	//}
+
+	//uintptr indicesSize = numIndices * sizeof(uint32);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[numBuffers - 1]);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesSize,
+	//	indices, usage);
+	//bufferSizes[numBuffers - 1] = indicesSize;
+
+	//struct VertexArray vaoData;
+	//vaoData.buffers = buffers;
+	//vaoData.bufferSizes = bufferSizes;
+	//vaoData.numBuffers = numBuffers;
+	//vaoData.numElements = numIndices;
+	//vaoData.usage = usage;
+	//vaoData.instanceComponentsStartIndex = numVertexComponents;
+	//vaoMap[VAO] = vaoData;
+	//return VAO;
+}
+void OpenGLRenderDevice::DrawV2(uint32 vao, uint32 shader, const DrawParams& drawParams, uint32 numElements)
+{
+	setShader(shader);
+
+	setVAO(vao);
+
+	glDrawElements(drawParams.primitiveType, (GLsizei)numElements, GL_UNSIGNED_INT, nullptr);
+
+	setShader(0);
+
+}
+void OpenGLRenderDevice::ClearV2(bool shouldClearColor, bool shouldClearDepth, bool shouldClearStencil, const Color& color, uint32 stencil)
+{
+	uint32 flags = 0;
+	if (shouldClearColor) {
+		flags |= GL_COLOR_BUFFER_BIT;
+		//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClearColor(color[0], color[1], color[2], color[3]);
+	}
+	if (shouldClearDepth) {
+		flags |= GL_DEPTH_BUFFER_BIT;
+	}
+	if (shouldClearStencil) {
+		flags |= GL_STENCIL_BUFFER_BIT;
+		setStencilWriteMask(stencil);
+	}
+	glClear(flags);
+}
+
 void OpenGLRenderDevice::clear(uint32 fbo, bool shouldClearColor, bool shouldClearDepth,
 	bool shouldClearStencil,const Color& color,uint32 stencil)
 {
@@ -114,8 +210,6 @@ void OpenGLRenderDevice::clear(uint32 fbo, bool shouldClearColor, bool shouldCle
 
 	glClear(flags);
 }
-
-
 /*
  * Complete drawing process:
  * + Ensure appropriate render targets are bound
@@ -359,9 +453,13 @@ uint32 OpenGLRenderDevice::releaseRenderTarget(uint32 fbo)
 }
 
 uint32 OpenGLRenderDevice::createVertexArray(const float** vertexData,
-	const uint32* vertexElementSizes, uint32 numVertexComponents,
-	uint32 numInstanceComponents, uint32 numVertices, const uint32* indices,
-	uint32 numIndices, enum BufferUsage usage)
+	const uint32* vertexElementSizes, 
+	uint32 numVertexComponents,
+	uint32 numInstanceComponents, 
+	uint32 numVertices, 
+	const uint32* indices,
+	uint32 numIndices, 
+	enum BufferUsage usage)
 {
 	unsigned int numBuffers = numVertexComponents + numInstanceComponents + 1;
 
@@ -737,20 +835,20 @@ uint32 OpenGLRenderDevice::releaseShaderProgram(uint32 shader)
 	if (shader == 0) {
 		return 0;
 	}
-	//Map<uint32, ShaderProgram>::iterator programIt = shaderProgramMap.find(shader);
-	//if (programIt == shaderProgramMap.end()) {
-	//	return 0;
-	//}
-	//const struct ShaderProgram* shaderProgram = &programIt->second;
+	Map<uint32, ShaderProgram>::iterator programIt = shaderProgramMap.find(shader);
+	if (programIt == shaderProgramMap.end()) {
+		return 0;
+	}
+	const struct ShaderProgram* shaderProgram = &programIt->second;
 
-	//for (Array<uint32>::const_iterator it = shaderProgram->shaders.begin();
-	//	it != shaderProgram->shaders.end(); ++it)
-	//{
-	//	glDetachShader(shader, *it);
-	//	glDeleteShader(*it);
-	//}
+	for (SOMA_Array<uint32>::const_iterator it = shaderProgram->shaders.begin();
+		it != shaderProgram->shaders.end(); ++it)
+	{
+		glDetachShader(shader, *it);
+		glDeleteShader(*it);
+	}
 	glDeleteProgram(shader);
-	//shaderProgramMap.erase(programIt);
+	shaderProgramMap.erase(programIt);
 	return 0;
 }
 uint32 OpenGLRenderDevice::getVersion()
@@ -814,7 +912,7 @@ static bool addShader(GLuint shaderProgram, const SOMA_String& text, GLenum type
 
 	if (shader == 0)
 	{
-		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR, "Error creating shader type %d", type);
+		SOMA_CORE_ERROR("Error creating shader type {0}", shader);
 		return false;
 	}
 
@@ -833,8 +931,8 @@ static bool addShader(GLuint shaderProgram, const SOMA_String& text, GLenum type
 		GLchar InfoLog[1024];
 
 		glGetShaderInfoLog(shader, 1024, NULL, InfoLog);
-		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR, "Error compiling shader type %d: '%s'\n",
-			shader, InfoLog);
+		SOMA_CORE_ERROR("Error compiling shader type {0}: {1}", shader, InfoLog);
+		glDeleteShader(shader);
 		return false;
 	}
 

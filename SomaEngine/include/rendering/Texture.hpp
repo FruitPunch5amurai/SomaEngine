@@ -47,8 +47,6 @@ private:
 	uint32 height;
 	bool compressed;
 	bool mipmaps;
-
-	NULL_COPY_AND_ASSIGN(Texture);
 };
 
 inline uint32 Texture::getId()

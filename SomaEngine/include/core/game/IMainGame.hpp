@@ -16,7 +16,7 @@
 class SceneList;
 class IScene;
 
-class SOMA_API IMainGame {
+class  IMainGame {
 
 public:
 	IMainGame();

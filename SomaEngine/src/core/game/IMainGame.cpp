@@ -14,7 +14,7 @@ IMainGame* IMainGame::s_Instance = nullptr; //Singleton
 
 IMainGame::IMainGame()
 {
-	SOMA_ASSERT(!s_Instance, "IMainGame already exists");
+	//SOMA_ASSERT(!s_Instance, "IMainGame already exists");
 	s_Instance = this;
 
 	m_sceneList = std::make_unique<SceneList>(this);
@@ -34,7 +34,7 @@ void IMainGame::run()
 
 	//Frame Counter
 	int nbFrame = 0;
-	float nbLastFrame = currentTime;
+	float nbLastFrame = (float)currentTime;
 	float nbCurrentFrame;
 
 	//Semi Fixed Timestep
@@ -44,7 +44,7 @@ void IMainGame::run()
 		currentTime = newTime;
 
 		//Frame Counter
-		nbCurrentFrame = newTime;
+		nbCurrentFrame = (float)newTime;
 		nbFrame++;		
 		if (nbCurrentFrame - nbLastFrame > 1.0f)
 		{
@@ -56,7 +56,7 @@ void IMainGame::run()
 
 		bool shouldRender = false;
 		while (frameTime > 0.0) {
-			float deltaTime = Math::min(frameTime, dt);
+			float deltaTime = (float) Math::min(frameTime, dt);
 			update(deltaTime);
 			for (SOMA_ENGINE::Layer* layer : m_layerStack)
 				layer->OnUpdate();
@@ -112,7 +112,7 @@ void IMainGame::OnEvent(SOMA_ENGINE::Event& e)
 
 	evtDispatcher.Dispatch<SOMA_ENGINE::WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-	SOMA_CORE_DEBUG("Event Fired: {0}", e.ToString());
+	//SOMA_CORE_DEBUG("Event Fired: {0}", e.ToString());
 
 	/*Handle the event for each layer*/
 	for (auto it = m_layerStack.end(); it != m_layerStack.begin();)

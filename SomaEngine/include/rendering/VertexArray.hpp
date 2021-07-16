@@ -24,8 +24,6 @@ private:
 	RenderDevice* device;
 	uint32 deviceId;
 	uint32 numIndices;
-
-	NULL_COPY_AND_ASSIGN(VertexArray);
 };
 
 inline uint32 VertexArray::getId()

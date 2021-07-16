@@ -5,7 +5,7 @@
 #include "platform/generic/GenericWindow.hpp"
 
 
-class SOMA_API SDLWindow : public GenericWindow {
+class  SDLWindow : public GenericWindow {
 	friend class SDLEventProcessor;
 public: 
 	SDLWindow(const WindowProps& props);

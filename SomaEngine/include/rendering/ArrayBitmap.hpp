@@ -30,7 +30,6 @@ private:
 	int32* pixels;
 
 	inline uintptr getPixelsSize() const;
-	NULL_COPY_AND_ASSIGN(ArrayBitmap)
 };
 
 inline int32 ArrayBitmap::getWidth() const

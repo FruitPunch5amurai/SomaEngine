@@ -7,7 +7,7 @@
 #include "InputControl.hpp"
 #include "InputHandler.hpp"
 
-class SOMA_API FPCamera {
+class  FPCamera {
 
 public:
 	FPCamera(Window& window, InputHandler& eventHandler, bool ortho = false);
@@ -24,7 +24,6 @@ public:
 	void ProcessMouse();
 
 private:
-	NULL_COPY_AND_ASSIGN(FPCamera);
 
 	InputControl m_movementX;
 	InputControl m_movementY;

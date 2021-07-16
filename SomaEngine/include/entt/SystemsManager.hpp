@@ -7,7 +7,7 @@
 
 	class SystemsManager;
 
-	class SOMA_API BaseSystem : NonCopyable {
+	class  BaseSystem : NonCopyable {
 	public:
 		typedef size_t Family;
 		static Family family_counter_;
@@ -36,7 +36,7 @@
 
 	};
 
-	class SOMA_API SystemsManager : NonCopyable {
+	class  SystemsManager : NonCopyable {
 
 	public:
 		SystemsManager() {};

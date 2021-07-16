@@ -31,7 +31,7 @@ public:
                 m_shader.setSampler("diffuse", textureId, m_sampler, 0);
                 
                 vao->updateBuffer(4, transforms, numTransforms * sizeof(Matrix));
-                this->draw(m_shader, *vao, m_drawParams, numTransforms);
+                this->draw(m_shader, *vao, m_drawParams, (uint32)numTransforms);
                 
                 materialIndex++;
             }

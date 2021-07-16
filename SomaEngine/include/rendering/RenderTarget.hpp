@@ -4,7 +4,7 @@
 #include "rendering/Texture.hpp"
 #include <stdexcept>
 
-class SOMA_API RenderTarget
+class  RenderTarget
 {
 public:
 	RenderTarget(RenderDevice& deviceIn) :
@@ -53,8 +53,6 @@ public:
 private:
 	RenderDevice* device;
 	uint32 deviceId;
-
-	NULL_COPY_AND_ASSIGN(RenderTarget);
 };
 
 inline uint32 RenderTarget::getId()

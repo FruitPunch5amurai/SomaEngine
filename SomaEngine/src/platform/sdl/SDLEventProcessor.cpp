@@ -87,7 +87,7 @@ void SDLEventProcessor::processMessages(IApplicationInputHandler& eventHandler)
 			case SDL_MOUSEMOTION:
 			{
 				eventHandler.onMouseMove(e.motion.x, e.motion.y, e.motion.xrel, e.motion.yrel);
-				SOMA_ENGINE::MouseMovedEvent ev(e.motion.x, e.motion.y);
+				SOMA_ENGINE::MouseMovedEvent ev((float)e.motion.x, (float)e.motion.y);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}

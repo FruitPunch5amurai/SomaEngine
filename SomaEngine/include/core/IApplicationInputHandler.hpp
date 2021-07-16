@@ -1,7 +1,7 @@
 #pragma once
 
 #include "common.hpp"
-class SOMA_API IApplicationInputHandler {
+class  IApplicationInputHandler {
 public:
 	IApplicationInputHandler() {}
 	virtual ~IApplicationInputHandler() {}
@@ -13,6 +13,5 @@ public:
 	virtual void onMouseMove(uint32 mousePosX, uint32 mousePosY, uint32 deltaX, uint32 deltaY) {}
 
 private:
-	NULL_COPY_AND_ASSIGN(IApplicationInputHandler);
 
 };

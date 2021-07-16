@@ -20,7 +20,7 @@
 
 typedef SDL_GLContext DeviceContext;
 
-class SOMA_API OpenGLRenderDevice
+class  OpenGLRenderDevice
 {
 public:
 	enum BufferUsage
@@ -196,9 +196,17 @@ public:
 	void clear(uint32 fbo,
 		bool shouldClearColor, bool shouldClearDepth, bool shouldClearStencil,
 		const Color& color, uint32 stencil);
-	void draw(uint32 fbo, uint32 shader, uint32 vao, const DrawParams& drawParams,
+	void draw(uint32 fbo, uint32 shader, uint32 vao, const DrawParams& drawParams,uint32 numInstances, uint32 numElements);
 
-		uint32 numInstances, uint32 numElements);
+
+	/*My Defined Things*/
+	uint32 GenSimpleVAO(const float* vertexData,
+		uint32 numVertices,
+		const uint32* indexData,
+		uint32 numIndices,
+		BufferUsage usage);
+	void DrawV2(uint32 vao, uint32 shader, const DrawParams& drawParams, uint32 numElements);
+	void ClearV2(bool shouldClearColor, bool shouldClearDepth, bool shouldClearStencil, const Color& color, uint32 stencil);
 private:
 	struct VertexArray
 	{
@@ -265,5 +273,6 @@ private:
 
 	uint32 getVersion();
 	SOMA_String getShaderVersion();
-	NULL_COPY_AND_ASSIGN(OpenGLRenderDevice)
+
+
 };

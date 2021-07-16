@@ -35,5 +35,4 @@ private:
 	uint32 fourCC;
 
 	void cleanup();
-	NULL_COPY_AND_ASSIGN(DDSTexture);
 };

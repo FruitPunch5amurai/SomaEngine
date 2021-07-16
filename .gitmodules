@@ -7,3 +7,6 @@
 [submodule "SomaEngine/vendor/glm"]
 	path = SomaEngine/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "SomaEngine/vendor/directxheaders"]
+	path = SomaEngine/vendor/directxheaders
+	url = https://github.com/microsoft/DirectX-Headers

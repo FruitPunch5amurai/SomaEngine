@@ -11,7 +11,7 @@ enum class ScreenState {
 
 class IMainGame;
 
-class SOMA_API IScene {
+class  IScene {
 public:
 	friend class SceneList;
 

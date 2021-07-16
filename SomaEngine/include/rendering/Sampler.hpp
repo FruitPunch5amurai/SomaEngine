@@ -24,8 +24,6 @@ public:
 private:
 	RenderDevice* device;
 	uint32 deviceId;
-
-	NULL_COPY_AND_ASSIGN(Sampler);
 };
 
 inline uint32 Sampler::getId()

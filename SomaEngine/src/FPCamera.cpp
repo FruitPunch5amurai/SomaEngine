@@ -34,7 +34,7 @@ Matrix FPCamera::GetViewMatrix()
 
 Matrix FPCamera::CalculatePerspectiveProjection()
 {
-    m_projection = Matrix::perspective(Math::toRadians(45.0f), m_window->getWidth() / m_window->getHeight(), 0.1f, 1000.0f);
+    m_projection = Matrix::perspective(Math::toRadians(45.0f), (float)m_window->getWidth() / (float)m_window->getHeight(), 0.1f, 1000.0f);
 
     return m_projection;
 }

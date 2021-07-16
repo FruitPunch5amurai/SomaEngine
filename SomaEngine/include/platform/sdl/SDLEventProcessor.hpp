@@ -1,7 +1,7 @@
 #pragma once
 #include "platform/generic/GenericEventProcessor.hpp"
 #include "platform/sdl/SDLWindow.hpp"
-class SOMA_API SDLEventProcessor : public GenericEventProcessor {
+class  SDLEventProcessor : public GenericEventProcessor {
 public:
 	SDLEventProcessor(SDLWindow* genericWindow);
 	virtual ~SDLEventProcessor();

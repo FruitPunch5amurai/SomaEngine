@@ -23,7 +23,8 @@ project "SomaEngine"
 	location "SomaEngine"
 	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -55,41 +56,39 @@ project "SomaEngine"
 	links {"opengl32.lib","assimp-vc141-mtd.lib","SDL2.lib","Glad","imgui"}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
-
 		defines
 		{
 				"SOMA_ENABLE_ASSERTS",
 				"SOMA_PLATFORM_WINDOWS",
-				"SOMA_BUILD_DLL",
-				"SOMA_PLATFORM_SDL"
-		}
-
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+				"",
+				"SOMA_PLATFORM_SDL",
+				"SOMA_RENDER_OPENGL"
 		}
 
 	filter "configurations:Debug"
 		defines "SOMA_DEBUG"
+		runtime "Debug"
 		buildoptions "/MDd"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "SOMA_RELEASE"
+		runtime "Release"
 		buildoptions "/MD"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Dist"
 		defines "SOMA_DIST"
 		buildoptions "/MD"
-		symbols "On"
+		runtime "Release"
+		symbols "on"
 		
 project "SandBox"
 	location "SandBox"
 	kind "ConsoleApp"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -117,8 +116,7 @@ project "SandBox"
 		"SomaEngine"
 	}
 
-	filter "system:windows"
-		cppdialect "C++17"
+	filter "system:windows"		
 		staticruntime "On"
 		systemversion "latest"
 
@@ -130,15 +128,19 @@ project "SandBox"
 
 	filter "configurations:Debug"
 		defines "SOMA_DEBUG"
+		runtime "Debug"
 		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "SOMA_RELEASE"
+		runtime "Release"
 		buildoptions "/MD"
 		symbols "On"
 
 	filter "configurations:Dist"
 		defines "SOMA_DIST"
+		runtime "Release"
 		buildoptions "/MD"
 		symbols "On"
+		

@@ -4,7 +4,7 @@
 #include "rendering/Model.hpp"
 #include "rendering/Texture.hpp"
 #include <rendering/Shader.hpp>
-class SOMA_API TextureCache
+class  TextureCache
 {
 public:
 	Texture* loadTexture(SOMA_String filepath, RenderDevice& deviceIn, enum OpenGLRenderDevice::PixelFormat format);
@@ -13,7 +13,7 @@ public:
 private:
 	Map<SOMA_String, Texture*> m_textureMap;
 };
-class SOMA_API ModelCache
+class  ModelCache
 {
 public:
 	Model* loadModel(SOMA_String filepath, RenderDevice& deviceIn,
@@ -23,7 +23,7 @@ public:
 private:
 	Map<SOMA_String, Model*> m_modelMap;
 };
-class SOMA_API ShaderCache
+class  ShaderCache
 {
 public:
 	Shader* loadShader(SOMA_String filepath, RenderDevice& deviceIn);
@@ -33,7 +33,7 @@ private:
 	Map<SOMA_String, Shader*> m_shaderMap;
 };
 
-class SOMA_API ResourceManager {
+class  ResourceManager {
 public:
 	ResourceManager();
 	~ResourceManager();
