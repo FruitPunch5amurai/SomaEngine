@@ -34,4 +34,15 @@ namespace SOMA_ENGINE {
 		uint32 m_id;
 		uint32 m_count;
 	};
+	class OpenGLUniformBuffer : public UniformBuffer {
+	public:
+		OpenGLUniformBuffer(const void* data, uintptr dataSize);
+		virtual ~OpenGLUniformBuffer();
+		virtual void Bind()const override;
+		virtual void Unbind() const override;
+		virtual void Update(const void* data, uintptr dataSize) const override;
+		uint32 GetId() { return m_id; }
+	private:
+		uint32 m_id;
+	};
 }

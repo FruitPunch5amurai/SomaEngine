@@ -10,7 +10,7 @@ namespace SOMA_ENGINE {
 	struct DataTypeSize {
 		uint32 elementCount;
 		uint32 size;
-		DataTypeSize(uint32 ec, uint32 s) :elementCount(ec),size(s){}
+		DataTypeSize(uint32 s, uint32 ec) :elementCount(ec),size(s){}
 	};
 
 	static DataTypeSize ShaderDataTypeSize(ShaderDataType type)
@@ -21,8 +21,8 @@ namespace SOMA_ENGINE {
 			case ShaderDataType::Float2:	return DataTypeSize(4 * 2,2); break;
 			case ShaderDataType::Float3:	return DataTypeSize(4 * 3,3); break;
 			case ShaderDataType::Float4:	return DataTypeSize(4 * 4,4); break;
-			case ShaderDataType::Mat3:	return DataTypeSize(4 * 3 * 3,3*3); break;
-			case ShaderDataType::Mat4:	return DataTypeSize(4 * 4 * 4,4*4); break;
+			case ShaderDataType::Mat3:	return DataTypeSize(4 * 3 * 3,3); break;
+			case ShaderDataType::Mat4:	return DataTypeSize(4 * 4 * 4,4); break;
 			case ShaderDataType::Int:	return DataTypeSize(4,1); break;
 			case ShaderDataType::Int2:	return DataTypeSize(4 * 2,2); break;
 			case ShaderDataType::Int3:	return DataTypeSize(4 * 3,3); break;
@@ -65,9 +65,11 @@ namespace SOMA_ENGINE {
 		}
 		inline const SOMA_Array<BufferElement>& GetElements() const { return m_elements; }
 
-		uint32 GetStirde() { return m_stride; }
+		uint32 GetStride() const { return m_stride; }
 		SOMA_Array<BufferElement>::iterator begin() { return m_elements.begin(); }
 		SOMA_Array<BufferElement>::iterator end() { return m_elements.end(); }
+		std::vector<BufferElement>::const_iterator begin() const { return m_elements.begin(); }
+		std::vector<BufferElement>::const_iterator end() const { return m_elements.end(); }
 	private:
 		void CalculateOffsetAndStride() {
 			uint32 offset = 0;
@@ -104,5 +106,15 @@ namespace SOMA_ENGINE {
 		virtual uint32 GetCount() const = 0;
 
 		static IndexBuffer* Create(uint32* vertices, uint32 count);
+	};
+	class UniformBuffer {
+	public:
+		virtual ~UniformBuffer() {};
+		virtual void Bind()const = 0;
+		virtual void Unbind() const = 0;
+		virtual void Update(const void* data, uintptr dataSize) const = 0;
+
+
+		static UniformBuffer* Create(const void* data, uintptr dataSize);
 	};
 }

@@ -1,15 +1,17 @@
 #pragma once
 
+#include "RenderAPI.hpp"
+#include "camera/Camera.hpp"
+#include <memory>
 namespace SOMA_ENGINE {
-	enum class RendererAPI {
-		None = 0,
-		OpenGL = 1
-	};
 	class Renderer {
 	public:
-		inline static RendererAPI GetAPI() { return s_RendererAPI; }
-	private:
-		static RendererAPI s_RendererAPI;
+		static void Begin(std::shared_ptr<SOMA_ENGINE::Camera>& camera);
+		static void End();
 
+		static void Submit(const std::shared_ptr<SOMA_ENGINE::VertexArray>& vertexArray);
+
+
+		inline static RenderAPI::API GetAPI() { return RenderAPI::GetAPI(); }
 	};
 }

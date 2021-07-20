@@ -18,8 +18,8 @@ void Model::loadTextures(ResourceManager* rManager, RenderDevice& deviceIn, Open
 		Map<SOMA_String, SOMA_String>::iterator it;
 		for (it = mat.textureNames.begin(); it != mat.textureNames.end(); it++)
 		{
-			Texture* tex = rManager->loadTexture(it->second,deviceIn,format);
-			mat.ids.insert(std::make_pair(it->first,tex->getId()));
+			/*Texture* tex = rManager->loadTexture(it->second,deviceIn,format);*/
+			//mat.ids.insert(std::make_pair(it->first,tex->getId()));
 		}
 	}
 }

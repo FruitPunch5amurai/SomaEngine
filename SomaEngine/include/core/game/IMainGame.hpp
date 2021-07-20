@@ -42,7 +42,7 @@ public:
 
 	//ResourceManager resourceManager;
 	//SpriteBatch spriteBatch;
-	ResourceManager resourceManager;
+	/*ResourceManager resourceManager;*/
 	RenderDevice* renderDevice;
 	RenderTarget* renderTarget;
 	Window* window;

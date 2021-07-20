@@ -87,7 +87,7 @@ void IMainGame::exitGame()
 		m_sceneList->destroy();
 		m_sceneList.reset();
 	}
-	resourceManager.cleanUp();
+	/*resourceManager.cleanUp();*/
 	delete eventProcessor;
 	delete window;
 	delete renderDevice;

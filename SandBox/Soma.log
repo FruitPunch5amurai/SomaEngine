@@ -1,7 +1,8 @@
-[14:08:55] [debug] SOMA: Logger Initialized
-[14:08:56] [debug] SOMA: SDL Window Created: SandBox (1280,730)
-[14:08:56] [debug] SOMA: OpenGL Info: 
-[14:08:56] [debug] SOMA: ---Vendor:NVIDIA Corporation
-[14:08:56] [debug] SOMA: ---Renderer:NVIDIA GeForce GTX 1050/PCIe/SSE2
-[14:08:56] [debug] SOMA: ---Version:4.5.0 NVIDIA 466.27
-[14:08:57] [debug] SOMA: 27.77777777777778 ms , FPS 36
+[08:24:35] [debug] SOMA: Logger Initialized
+[08:24:37] [debug] SOMA: SDL Window Created: SandBox (1280,730)
+[08:24:37] [debug] SOMA: OpenGL Info: 
+[08:24:37] [debug] SOMA: ---Vendor:NVIDIA Corporation
+[08:24:37] [debug] SOMA: ---Renderer:NVIDIA GeForce GTX 1050/PCIe/SSE2
+[08:24:37] [debug] SOMA: ---Version:4.5.0 NVIDIA 466.27
+[08:24:38] [debug] SOMA: 125 ms , FPS 8
+[08:24:39] [debug] SOMA: 19.607843137254903 ms , FPS 51

@@ -9,16 +9,24 @@ namespace SOMA_ENGINE {
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32 size) {
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None: return nullptr; break;
-			case RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size); break;
+			case RenderAPI::API::None: return nullptr; break;
+			case RenderAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size); break;
 		}
 		return nullptr;
 	}
 	IndexBuffer* IndexBuffer::Create(uint32* indices, uint32 count) {
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None: return nullptr; break;
-			case RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, count); break;
+			case RenderAPI::API::None: return nullptr; break;
+			case RenderAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, count); break;
+		}
+		return nullptr;
+	}
+	UniformBuffer* UniformBuffer::Create(const void* data, uintptr dataSize) {
+		switch (Renderer::GetAPI())
+		{
+		case RenderAPI::API::None: return nullptr; break;
+		case RenderAPI::API::OpenGL: return new OpenGLUniformBuffer(data, dataSize); break;
 		}
 		return nullptr;
 	}

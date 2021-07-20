@@ -747,7 +747,9 @@ uint32 OpenGLRenderDevice::createUniformBuffer(const void* data, uintptr dataSiz
 	return ubo;
 }
 
-void OpenGLRenderDevice::updateUniformBuffer(uint32 buffer, const void* data, uintptr dataSize)
+void OpenGLRenderDevice::updateUniformBuffer(uint32 buffer, 
+	const void* data, 
+	uintptr dataSize)
 {
 	glBindBuffer(GL_UNIFORM_BUFFER, buffer);
 	void* dest = glMapBuffer(GL_UNIFORM_BUFFER, GL_WRITE_ONLY);
@@ -810,7 +812,8 @@ uint32 OpenGLRenderDevice::createShaderProgram(const SOMA_String& shaderText)
 	return shaderProgram;
 }
 
-void OpenGLRenderDevice::setShaderUniformBuffer(uint32 shader, const SOMA_String& uniformBufferName,
+void OpenGLRenderDevice::setShaderUniformBuffer(uint32 shader, 
+	const SOMA_String& uniformBufferName,
 	uint32 buffer)
 {
 	setShader(shader);
