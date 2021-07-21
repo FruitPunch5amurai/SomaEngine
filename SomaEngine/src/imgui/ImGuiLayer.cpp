@@ -22,8 +22,8 @@ namespace SOMA_ENGINE {
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+		//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 		//io.ConfigViewportsNoAutoMerge = true;
 		//io.ConfigViewportsNoTaskBarIcon = true;
 
@@ -55,6 +55,7 @@ namespace SOMA_ENGINE {
 	void ImGuiLayer::OnImGuiRender()
 	{
 		static bool show = true;
+		ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
 		ImGui::ShowDemoWindow(&show);
 	}
 	/*void ImGuiLayer::OnUpdate()

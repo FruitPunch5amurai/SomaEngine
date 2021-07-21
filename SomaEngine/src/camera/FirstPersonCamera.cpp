@@ -35,11 +35,32 @@ namespace SOMA_ENGINE {
 			m_props->fov_near, m_props->fov_far);
 		return m_projectionMatrix;
 	}
-	glm::mat4 FirstPersonCamera::Move(CameraMovement moveDirection) 
+	void FirstPersonCamera::Move(CameraMovement moveDirection)
 	{
-		return glm::mat4();
+		switch (moveDirection)
+		{
+			case CameraMovement::LEFT:
+				m_cameraPosition.x -= m_props->cameraSpeed;
+				break;
+			case CameraMovement::RIGHT:
+				m_cameraPosition.x += m_props->cameraSpeed;
+				break;
+			case CameraMovement::UP:
+				m_cameraPosition.y += m_props->cameraSpeed;
+				break;
+			case CameraMovement::DOWN:
+				m_cameraPosition.y -= m_props->cameraSpeed;
+				break;
+			case CameraMovement::FOWARD:
+				m_cameraPosition.z -= m_props->cameraSpeed;
+				break;
+			case CameraMovement::BACKWARD:
+				m_cameraPosition.z += m_props->cameraSpeed;
+				break;
+		}
+		CalculateViewMatrix();
 	}
-	glm::mat4 FirstPersonCamera::CalculateViewMatrix() 
+	glm::mat4 FirstPersonCamera::CalculateViewMatrix()
 	{
 		m_viewMatrix = glm::lookAt(m_cameraPosition, m_cameraPosition + m_cameraFront, m_cameraUp);
 		return m_viewMatrix;

@@ -10,9 +10,65 @@
 #include <imgui/ImGuiLayer.hpp>
 
 #include <Soma.hpp>
-
+#include <imgui/imgui.h>
 #include "TestScene.hpp"
 #include <glm/ext/matrix_transform.hpp>
+
+
+class CameraLayer : public SOMA_ENGINE::Layer
+{
+public:
+	CameraLayer(SOMA_ENGINE::Camera* camera) : Layer("Camera"), m_camera(camera) {}
+	void OnAttach() override {
+	
+	};
+	void OnDetach() override {
+	
+	};
+	void OnUpdate() override {
+	
+	}
+	void OnImGuiRender() override {
+		ImGui::Begin("Camera Properties");
+		ImGui::Text("Camera ");
+		ImGui::End();
+	};
+	void OnEvent(SOMA_ENGINE::Event& event) override {
+		SOMA_ENGINE::EventDispatcher evtDispatcher(event);
+
+		evtDispatcher.Dispatch<SOMA_ENGINE::KeyReleasedEvent>(SOMA_BIND_EVENT_FN(CameraLayer::MoveCamera));
+	};
+private:
+	SOMA_ENGINE::Camera* m_camera;
+
+	bool MoveCamera(SOMA_ENGINE::KeyReleasedEvent& e) {
+		ImGuiIO& io = ImGui::GetIO();
+		io.KeysDown[e.GetKeyCode()] = true;
+		switch (e.GetKeyCode())
+		{
+		case SOMA_ENGINE::Key::SDL_SCANCODE_LEFT:
+			m_camera->Move(SOMA_ENGINE::CameraMovement::LEFT);
+			break;
+		case SOMA_ENGINE::Key::SDL_SCANCODE_RIGHT:
+			m_camera->Move(SOMA_ENGINE::CameraMovement::RIGHT);
+			break;
+		case SOMA_ENGINE::Key::SDL_SCANCODE_UP:
+			m_camera->Move(SOMA_ENGINE::CameraMovement::FOWARD);
+			break;
+		case SOMA_ENGINE::Key::SDL_SCANCODE_DOWN:
+			m_camera->Move(SOMA_ENGINE::CameraMovement::BACKWARD);
+			break;
+		case SOMA_ENGINE::Key::SDL_SCANCODE_E:
+			m_camera->Move(SOMA_ENGINE::CameraMovement::DOWN);
+			break;
+		case SOMA_ENGINE::Key::SDL_SCANCODE_Q:
+			m_camera->Move(SOMA_ENGINE::CameraMovement::UP);
+			break;
+		}		
+		return false;
+	}
+};
+
 
 TestScene::TestScene()
 {
@@ -96,7 +152,7 @@ void TestScene::onEntry()
 	/*Camera*/
 	m_camera.reset(new SOMA_ENGINE::FirstPersonCamera(
 		glm::vec3(0.0f, 0.0f, 6.0f), 
-		glm::vec3(0.0f,-60.0f,0.0f),
+		glm::vec3(0.0f,-90.0f,0.0f),
 		&m_cameraProps));
 
 	/*Uniform Buffer*/
@@ -105,7 +161,8 @@ void TestScene::onEntry()
 	m_uniformBuffer.reset(SOMA_ENGINE::UniformBuffer::Create(&m_uniformBufferArray[0],sizeof(glm::mat4) * 2));
 	m_shader->UploadUniformBuffer("Matrices", m_uniformBuffer.get());
 
-
+	/*Camera ImGui Layer*/
+	m_game->PushOverlay(new CameraLayer(m_camera.get()));
 	
 }
 
@@ -124,6 +181,7 @@ void TestScene::draw(float dt)
 	SOMA_ENGINE::RenderCommand::Clear();
 
 	SOMA_ENGINE::Renderer::Begin(m_camera);
+	m_uniformBufferArray[1] = m_camera->GetView();
 	m_shader->Bind();
 
 	//m_shader->SetMat4("u_projection", m_camera->GetProjection());

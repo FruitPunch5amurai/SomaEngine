@@ -9,7 +9,7 @@ namespace SOMA_ENGINE {
 			CameraProps* props);
 		~FirstPersonCamera() {}
 		virtual glm::mat4 CalculateProjectionMatrix()  override;
-		virtual glm::mat4 Move(CameraMovement moveDirection)  override;
+		virtual void Move(CameraMovement moveDirection)  override;
 		virtual glm::mat4 CalculateViewMatrix()  override;
 	private:
 		virtual void UpdateCameraVectors() override;

@@ -25,7 +25,7 @@ namespace SOMA_ENGINE {
 	public:
 		virtual ~Camera() {};
 		virtual glm::mat4 CalculateProjectionMatrix() = 0;
-		virtual glm::mat4 Move(CameraMovement moveDirection) = 0;
+		virtual void Move(CameraMovement moveDirection) = 0;
 		virtual glm::mat4 CalculateViewMatrix() = 0;
 		glm::mat4 GetProjection() { return m_projectionMatrix; }
 		glm::mat4 GetView() { return m_viewMatrix; }
