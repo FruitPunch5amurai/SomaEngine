@@ -33,7 +33,7 @@ public:
 
 	//Called in main game loop
 	virtual void update(float dt) = 0;
-	virtual void draw(float dt) = 0;
+	virtual void draw() = 0;
 
 	int getIndex() const { return m_sceneIndex; }
 	ScreenState getState() const { return m_currentState; }

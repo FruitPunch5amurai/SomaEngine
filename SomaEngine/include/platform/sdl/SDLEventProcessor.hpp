@@ -5,7 +5,7 @@ class  SDLEventProcessor : public GenericEventProcessor {
 public:
 	SDLEventProcessor(SDLWindow* genericWindow);
 	virtual ~SDLEventProcessor();
-	void processMessages(IApplicationInputHandler& eventHandler) override;
+	void processMessages() override;
 
 
 private:

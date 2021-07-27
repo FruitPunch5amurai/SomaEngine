@@ -29,40 +29,54 @@ namespace SOMA_ENGINE {
 	}
 	glm::mat4 FirstPersonCamera::CalculateProjectionMatrix()
 	{
-		m_projectionMatrix = glm::perspective((float)glm::radians(m_props->fov),
-			(float)m_props->width
-			/ (float)m_props->height,
-			m_props->fov_near, m_props->fov_far);
+		if (m_props->isOrthographic)
+		{
+			m_projectionMatrix = glm::ortho(m_props->left, m_props->right,
+				m_props->bottom, m_props->top,-1.0f,1.0f);
+		}
+		else {
+			m_projectionMatrix = glm::perspective((float)glm::radians(m_props->fov),
+				(float)m_props->width
+				/ (float)m_props->height,
+				m_props->fov_near, m_props->fov_far);
+		}
 		return m_projectionMatrix;
 	}
-	void FirstPersonCamera::Move(CameraMovement moveDirection)
+	void FirstPersonCamera::Move(CameraMovement moveDirection,float deltaTime)
 	{
 		switch (moveDirection)
 		{
 			case CameraMovement::LEFT:
-				m_cameraPosition.x -= m_props->cameraSpeed;
+				m_cameraPosition.x -= m_props->cameraSpeed * deltaTime;
 				break;
 			case CameraMovement::RIGHT:
-				m_cameraPosition.x += m_props->cameraSpeed;
+				m_cameraPosition.x += m_props->cameraSpeed * deltaTime;
 				break;
 			case CameraMovement::UP:
-				m_cameraPosition.y += m_props->cameraSpeed;
+				m_cameraPosition.y += m_props->cameraSpeed * deltaTime;
 				break;
 			case CameraMovement::DOWN:
-				m_cameraPosition.y -= m_props->cameraSpeed;
+				m_cameraPosition.y -= m_props->cameraSpeed * deltaTime;
 				break;
 			case CameraMovement::FOWARD:
-				m_cameraPosition.z -= m_props->cameraSpeed;
+				m_cameraPosition.z -= m_props->cameraSpeed * deltaTime;
 				break;
 			case CameraMovement::BACKWARD:
-				m_cameraPosition.z += m_props->cameraSpeed;
+				m_cameraPosition.z += m_props->cameraSpeed * deltaTime;
 				break;
 		}
 		CalculateViewMatrix();
 	}
 	glm::mat4 FirstPersonCamera::CalculateViewMatrix()
 	{
-		m_viewMatrix = glm::lookAt(m_cameraPosition, m_cameraPosition + m_cameraFront, m_cameraUp);
+		if (m_props->isOrthographic){
+			glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(m_cameraPosition.x,m_cameraPosition.y,0.0f)) *
+				glm::rotate(glm::mat4(1.0f), glm::radians(m_cameraRotation.z), glm::vec3(0, 0, 1));
+			m_viewMatrix = glm::inverse(transform);
+		}
+		else {
+			m_viewMatrix = glm::lookAt(m_cameraPosition, m_cameraPosition + m_cameraFront, m_cameraUp);
+		}
 		return m_viewMatrix;
 	}
 	void FirstPersonCamera::UpdateCameraVectors()

@@ -1,4 +1,4 @@
-#include "somapch.hpp"
+﻿#include "somapch.hpp"
 #include "platform/opengl/OpenGLShader.hpp"
 #include <glad/glad.h>
 #include "core/Logger.hpp"
@@ -11,12 +11,60 @@ namespace SOMA_ENGINE {
 		bool isProgram, const SOMA_String& errorMessage);
 	static void addAllAttributes(GLuint program, const SOMA_String& vertexShaderText, uint32 version);
 	static void addShaderUniforms(GLuint shaderProgram, const SOMA_String& shaderText,
-		Map<SOMA_String, GLint>& uniformMap, Map<SOMA_String, GLint>& samplerMap);
+		Map<SOMA_String, GLint>& uniformMap, Map<SOMA_String, GLint>& uniformBinding, Map<SOMA_String, GLint>& samplerMap);
 
-	OpenGLShader::OpenGLShader(const SOMA_String& name)
+	OpenGLShader::OpenGLShader(const SOMA_String& filepath)
 	{
 		SOMA_String shaderText;
-		StringFuncs::loadTextFileWithIncludes(shaderText, name, "#include");
+		StringFuncs::loadTextFileWithIncludes(shaderText, filepath, "#include");
+		m_name = StringFuncs::getFileName(filepath);
+		m_id = glCreateProgram();
+
+		if (m_id == 0)
+		{
+			DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR, "Error creating shader program\n");
+			//return (uint32)-1;
+		}
+
+		SOMA_String version = GetShaderVersion();
+		SOMA_String vertexShaderText = "#version " + version +
+			"\n#define VS_BUILD\n#define GLSL_VERSION " + version + "\n" + shaderText;
+		SOMA_String fragmentShaderText = "#version " + version +
+			"\n#define FS_BUILD\n#define GLSL_VERSION " + version + "\n" + shaderText;
+
+		SOMA_ENGINE::ShaderProgram programData;
+		if (!addShader(m_id, vertexShaderText, GL_VERTEX_SHADER,
+			&programData.shaders)) {
+			//return (uint32)-1;
+		}
+		if (!addShader(m_id, fragmentShaderText, GL_FRAGMENT_SHADER,
+			&programData.shaders)) {
+			//return (uint32)-1;
+		}
+
+		glLinkProgram(m_id);
+		if (checkShaderError(m_id, GL_LINK_STATUS,
+			true, "Error linking shader program")) {
+			//return (uint32)-1;
+		}
+
+		glValidateProgram(m_id);
+		if (checkShaderError(m_id, GL_VALIDATE_STATUS,
+			true, "Invalid shader program")) {
+			//return (uint32)-1;
+		}
+
+		addAllAttributes(m_id, vertexShaderText, GetVersion());
+		addShaderUniforms(m_id, shaderText, programData.uniformMap, programData.uniformBinding,
+			programData.samplerMap);
+
+		m_shaderProgramMap[m_id] = programData;
+	}
+	OpenGLShader::OpenGLShader(const SOMA_String& name, const SOMA_String& filepath)
+	{
+		SOMA_String shaderText;
+		StringFuncs::loadTextFileWithIncludes(shaderText, filepath, "#include");
+		m_name = name;
 
 		m_id = glCreateProgram();
 
@@ -55,11 +103,10 @@ namespace SOMA_ENGINE {
 		}
 
 		addAllAttributes(m_id, vertexShaderText, GetVersion());
-		addShaderUniforms(m_id, shaderText, programData.uniformMap,
+		addShaderUniforms(m_id, shaderText, programData.uniformMap, programData.uniformBinding,
 			programData.samplerMap);
 
 		m_shaderProgramMap[m_id] = programData;
-		//return shaderProgram;
 	}
 	OpenGLShader::~OpenGLShader()
 	{
@@ -94,8 +141,23 @@ namespace SOMA_ENGINE {
 	{
 		OpenGLUniformBuffer* b  = (OpenGLUniformBuffer*)(buffer);	// TODO: May have to change this later
 		glBindBufferBase(GL_UNIFORM_BUFFER,
-			m_shaderProgramMap.at(m_id).uniformMap.at(uniformBufferName),
+			m_shaderProgramMap.at(m_id).uniformBinding.at(uniformBufferName),
 			b->GetId());
+	}
+	void OpenGLShader::UploadInt(const SOMA_String& uniformName, const int& value) const
+	{
+		GLint location = glGetUniformLocation(m_id, uniformName.c_str());
+		glUniform1i(location, value);
+	}
+	void OpenGLShader::UploadFloat4(const SOMA_String& uniformName, const glm::vec4& value) const
+	{
+		GLint location = glGetUniformLocation(m_id, uniformName.c_str());
+		glUniform4f(location, value.x,value.y,value.z,value.w);
+	}
+	void OpenGLShader::UploadFloat3(const SOMA_String& uniformName, const glm::vec3& value) const
+	{
+		GLint location = glGetUniformLocation(m_id, uniformName.c_str());
+		glUniform3f(location, value.x, value.y, value.z);
 	}
 	void OpenGLShader::UploadMat4(const SOMA_String& uniformName, const glm::mat4& value) const
 	{
@@ -249,9 +311,11 @@ namespace SOMA_ENGINE {
 	}
 
 	static void addShaderUniforms(GLuint shaderProgram, const SOMA_String& shaderText,
-		Map<SOMA_String, GLint>& uniformMap, Map<SOMA_String, GLint>& samplerMap)
+		Map<SOMA_String, GLint>& uniformMap, Map<SOMA_String, GLint>& uniformBinding,
+		Map<SOMA_String, GLint>& samplerMap)
 	{
 		GLint numBlocks;
+		uint32 binding = 0;
 		glGetProgramiv(shaderProgram, GL_ACTIVE_UNIFORM_BLOCKS, &numBlocks);
 		for (int32 block = 0; block < numBlocks; ++block) {
 			GLint nameLen;
@@ -262,27 +326,28 @@ namespace SOMA_ENGINE {
 			glGetActiveUniformBlockName(shaderProgram, block, nameLen, NULL, &name[0]);
 			SOMA_String uniformBlockName((char*)&name[0], nameLen - 1);
 			uniformMap[uniformBlockName] = glGetUniformBlockIndex(shaderProgram, &name[0]);
-			glUniformBlockBinding(shaderProgram, glGetUniformBlockIndex(shaderProgram, &name[0]), 0);
+			glUniformBlockBinding(shaderProgram, glGetUniformBlockIndex(shaderProgram, &name[0]), 
+				binding);
+			uniformBinding[uniformBlockName] = glGetUniformBlockIndex(shaderProgram, &name[0]);
+			binding++;
 		}
 
 		GLint numUniforms = 0;
-		glGetProgramiv(shaderProgram, GL_ACTIVE_UNIFORMS, &numBlocks);
+		glGetProgramiv(shaderProgram, GL_ACTIVE_UNIFORMS, &numUniforms);
 
 		// Would get GL_ACTIVE_UNIFORM_MAX_LENGTH, but buggy on some drivers
-		//Array<GLchar> uniformName(256);
-		//for (int32 uniform = 0; uniform < numUniforms; ++uniform) {
-		//	GLint arraySize = 0;
-		//	GLenum type = 0;
-		//	GLsizei actualLength = 0;
-		//	glGetActiveUniform(shaderProgram, uniform, uniformName.size(),
-		//		&actualLength, &arraySize, &type, &uniformName[0]);
-		//	if (type != GL_SAMPLER_2D) {
-		//		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR,
-		//			"Non-sampler2d uniforms currently unsupported!");
-		//		continue;
-		//	}
-		//	SOMA_String name((char*)&uniformName[0], actualLength - 1);
-		//	samplerMap[name] = glGetUniformLocation(shaderProgram, (char*)&uniformName[0]);
-		//}
+		SOMA_Array<GLchar> uniformName(256);
+		for (int32 uniform = 0; uniform < numUniforms; ++uniform) {
+			GLint arraySize = 0;
+			GLenum type = 0;
+			GLsizei actualLength = 0;
+			glGetActiveUniform(shaderProgram, uniform, uniformName.size(),
+				&actualLength, &arraySize, &type, &uniformName[0]);
+			if (type != GL_SAMPLER_2D) {
+				continue;
+			}
+			SOMA_String name((char*)&uniformName[0], actualLength);
+			samplerMap[name] = glGetUniformLocation(shaderProgram, (char*)&uniformName[0]);
+		}
 	}
 }

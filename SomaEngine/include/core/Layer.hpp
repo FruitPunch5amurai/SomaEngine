@@ -11,7 +11,8 @@ namespace SOMA_ENGINE {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(float deltaTime) {}
+		virtual void OnDraw() {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

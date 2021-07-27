@@ -74,7 +74,7 @@ namespace SOMA_ENGINE {
 		void CalculateOffsetAndStride() {
 			uint32 offset = 0;
 			m_stride = 0;
-			for (auto element : m_elements)
+			for (auto& element : m_elements)
 			{
 				element.offset = offset;
 				offset += element.size;

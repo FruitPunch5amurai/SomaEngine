@@ -20,12 +20,19 @@ namespace SOMA_ENGINE {
 		float zoom;
 		float cameraSpeed;
 		float cameraSensitivity;
+		/*Ortho Settings*/
+		float left;
+		float right;
+		float top;
+		float bottom;
+
+		bool isOrthographic = false;
 	};
 	class Camera {
 	public:
 		virtual ~Camera() {};
 		virtual glm::mat4 CalculateProjectionMatrix() = 0;
-		virtual void Move(CameraMovement moveDirection) = 0;
+		virtual void Move(CameraMovement moveDirection, float deltaTime) = 0;
 		virtual glm::mat4 CalculateViewMatrix() = 0;
 		glm::mat4 GetProjection() { return m_projectionMatrix; }
 		glm::mat4 GetView() { return m_viewMatrix; }

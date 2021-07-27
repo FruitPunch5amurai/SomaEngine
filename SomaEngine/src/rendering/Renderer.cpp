@@ -2,7 +2,11 @@
 #include "rendering/Renderer.hpp"
 #include "rendering/RenderCommand.hpp"
 namespace SOMA_ENGINE {
-	void Renderer::Begin(std::shared_ptr<SOMA_ENGINE::Camera>&)
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
+	void Renderer::Begin(Ref<SOMA_ENGINE::Camera>& camera)
 	{
 		//Do Camera Stuff
 
@@ -10,9 +14,13 @@ namespace SOMA_ENGINE {
 	void Renderer::End()
 	{
 	}
-	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
+	void Renderer::Submit(const Ref<VertexArray>& vertexArray,
+		const Ref<SOMA_ENGINE::Shader>& shader)
 	{
+		shader->Bind();
+
 		vertexArray->Bind();
+
 		RenderCommand::DrawIndexed(vertexArray);
 	}
 }

@@ -11,15 +11,15 @@ namespace SOMA_ENGINE {
 		virtual void Unbind() const override;
 
 
-		virtual void AddVertexBuffer(const std::shared_ptr <VertexBuffer>& buffer)override;
-		virtual void SetIndexBuffer(const std::shared_ptr <IndexBuffer>& buffer) override;
+		virtual void AddVertexBuffer(const Ref<VertexBuffer>& buffer)override;
+		virtual void SetIndexBuffer(const Ref<IndexBuffer>& buffer) override;
 
-		virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const { return m_vertexBuffers; }
-		virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const { return m_indexBuffer; }
+		virtual const std::vector<Ref<VertexBuffer>>& GetVertexBuffers() const { return m_vertexBuffers; }
+		virtual const Ref<IndexBuffer>& GetIndexBuffer() const { return m_indexBuffer; }
 
 	private:
 		uint32 m_id;
-		SOMA_Array< std::shared_ptr <VertexBuffer>> m_vertexBuffers;
-		std::shared_ptr <IndexBuffer> m_indexBuffer;
+		SOMA_Array< Ref<VertexBuffer>> m_vertexBuffers;
+		Ref<IndexBuffer> m_indexBuffer;
 	};
 }

@@ -24,8 +24,10 @@ SDLEventProcessor::~SDLEventProcessor()
 	Destroy();
 }
 
-void SDLEventProcessor::processMessages(IApplicationInputHandler& eventHandler)
+void SDLEventProcessor::processMessages()
 {
+	this->m_sdlWindow->UpdateInput();
+
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_WINDOWEVENT)
@@ -52,14 +54,16 @@ void SDLEventProcessor::processMessages(IApplicationInputHandler& eventHandler)
 			switch (e.type) {
 			case SDL_KEYDOWN:
 			{
-				eventHandler.onKeyDown(e.key.keysym.scancode, e.key.repeat != 0);
+				this->m_sdlWindow->KeyPress(e.key.keysym.scancode);
+				//eventHandler.onKeyDown(e.key.keysym.scancode, e.key.repeat != 0);
 				SOMA_ENGINE::KeyPressedEvent ev(e.key.keysym.scancode, 0);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}
 			case SDL_KEYUP:
 			{
-				eventHandler.onKeyUp(e.key.keysym.scancode, e.key.repeat != 0);
+				this->m_sdlWindow->KeyRelease(e.key.keysym.scancode);
+				//eventHandler.onKeyUp(e.key.keysym.scancode, e.key.repeat != 0);
 				SOMA_ENGINE::KeyReleasedEvent ev(e.key.keysym.scancode);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
@@ -72,21 +76,24 @@ void SDLEventProcessor::processMessages(IApplicationInputHandler& eventHandler)
 			}
 			case SDL_MOUSEBUTTONDOWN:
 			{
-				eventHandler.onMouseDown(e.button.type, e.button.clicks);
+				this->m_sdlWindow->KeyPress(e.button.type);
+				//eventHandler.onMouseDown(e.button.type, e.button.clicks);
 				SOMA_ENGINE::MouseButtonPressedEvent ev(e.button.button - 1);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}
 			case SDL_MOUSEBUTTONUP:
 			{
-				eventHandler.onMouseUp(e.button.type, e.button.clicks);
+				this->m_sdlWindow->KeyRelease(e.button.type);
+				//eventHandler.onMouseUp(e.button.type, e.button.clicks);
 				SOMA_ENGINE::MouseButtonReleasedEvent ev(e.button.button - 1);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}
 			case SDL_MOUSEMOTION:
 			{
-				eventHandler.onMouseMove(e.motion.x, e.motion.y, e.motion.xrel, e.motion.yrel);
+				this->m_sdlWindow->SetMouseCoords(e.motion.x, e.motion.y);
+				//eventHandler.onMouseMove(e.motion.x, e.motion.y, e.motion.xrel, e.motion.yrel);
 				SOMA_ENGINE::MouseMovedEvent ev((float)e.motion.x, (float)e.motion.y);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
@@ -97,6 +104,8 @@ void SDLEventProcessor::processMessages(IApplicationInputHandler& eventHandler)
 			};
 		}
 	}
+
+
 }
 
 void SDLEventProcessor::Init()

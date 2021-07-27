@@ -51,6 +51,31 @@ SOMA_String StringFuncs::getFilePath(const SOMA_String& fileName)
 	}
 }
 
+SOMA_String StringFuncs::getFileName(const SOMA_String& filePath)
+{
+	const char* cstr = filePath.c_str();
+	unsigned int strLength = (unsigned int)filePath.length();
+	unsigned int end = strLength - 1;
+	unsigned int trueEnd = end;
+
+	while (end != 0) {
+		if (cstr[end] == '/') {
+			break;
+		}
+		if (cstr[end] == '.')
+			trueEnd = end;
+		end--;
+	}
+
+	if (end == 0) {
+		return filePath;
+	}
+	else {
+		end++;
+		return filePath.substr(end, (strLength - 1 - end) - (strLength - 1 - trueEnd));
+	}
+}
+
 bool StringFuncs::loadTextFileWithIncludes(SOMA_String& output, const SOMA_String& fileName,
 	const SOMA_String& includeKeyword)
 {

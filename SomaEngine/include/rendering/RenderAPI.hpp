@@ -13,7 +13,8 @@ namespace SOMA_ENGINE {
 	public:
 		virtual void SetClearColor(const glm::vec4& color) = 0;
 		virtual void Clear() = 0;
-		virtual void DrawIndexed(const std::shared_ptr<SOMA_ENGINE::VertexArray>& vertexArray) = 0;
+		virtual void DrawIndexed(const Ref<SOMA_ENGINE::VertexArray>& vertexArray) = 0;
+		virtual void Init() = 0;
 
 		inline static API GetAPI() { return s_api; }
 	private:

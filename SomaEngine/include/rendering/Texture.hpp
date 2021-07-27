@@ -4,6 +4,7 @@
 #include "ArrayBitmap.hpp"
 #include "DDSTexture.hpp"
 
+/*TODO: Remove*/
 class Texture
 {
 public:
@@ -73,3 +74,19 @@ inline bool Texture::hasMipmaps() const
 {
 	return mipmaps;
 }
+
+namespace SOMA_ENGINE {
+	class Texture {
+	public:
+		virtual ~Texture() = default;
+		virtual uint32 GetWidth() const = 0;
+		virtual uint32 GetHeight() const = 0;
+
+		virtual void Bind(uint32 slot = 0) const = 0;
+	};
+
+	class Texture2D : public Texture {
+	public:
+		static Texture2D* Create(const SOMA_String& path);
+	};
+};

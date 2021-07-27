@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdexcept>
 #include "platform/platform.hpp"
-
+#include <memory>
 //Include known-size integer files, based on compiler. Some compilers do not have these
 //files, so they must be created manually.
 #if defined(__GNUC__) || defined(__clang__) || (defined(_MSC_VER) && _MSC_VER >= 1600)
@@ -119,3 +119,11 @@ typedef uintptr_t uintptr;
 #else
 
 #endif
+
+namespace SOMA_ENGINE {
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+}

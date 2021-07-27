@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["Glad"] = "SomaEngine/vendor/Glad/include"
 IncludeDir["imgui"] = "SomaEngine/vendor/imgui"
 IncludeDir["glm"] = "SomaEngine/vendor/glm"
+IncludeDir["stb_image"] = "SomaEngine/vendor/stb_image"
 
 include "SomaEngine/vendor/Glad"
 include "SomaEngine/vendor/imgui"
@@ -41,7 +42,10 @@ project "SomaEngine"
 	{
 		"%{prj.name}/include/**.hpp",
 		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/vendor/glm/glm/**.hpp"
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp"
+
 	}
 	includedirs
 	{
@@ -49,7 +53,8 @@ project "SomaEngine"
 		"Deps/include",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 	libdirs { "Deps/lib/x64" }
 
@@ -61,7 +66,6 @@ project "SomaEngine"
 		{
 				"SOMA_ENABLE_ASSERTS",
 				"SOMA_PLATFORM_WINDOWS",
-				"",
 				"SOMA_PLATFORM_SDL",
 				"SOMA_RENDER_OPENGL"
 		}
@@ -124,6 +128,7 @@ project "SandBox"
 		{
 				"SOMA_ENABLE_ASSERTS",
 				"SOMA_PLATFORM_WINDOWS",
+				"SOMA_PLATFORM_SDL"
 		}
 
 	filter "configurations:Debug"

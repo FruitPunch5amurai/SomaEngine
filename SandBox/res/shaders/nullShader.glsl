@@ -15,27 +15,43 @@
  */
  
 #if defined(VS_BUILD)
-layout (location = 0) in vec3 position;
-out vec4 vertexColor; // specify a color output to the fragment shader
+layout (location = 0) in vec3 aPosition;
+layout (location = 1) in vec2 aTexCoord;
 
 layout (std140) uniform Matrices
 {
     mat4 u_projection;
 	mat4 u_view;
+	mat4 u_model;
 };
+
+
+
+out vec2 TexCoord;
+
 void main()
 {
-    gl_Position =  u_projection * u_view * vec4(position, 1.0) ; // see how we directly give a vec3 to vec4's constructor
-    vertexColor = vec4(0.5, 0.0, 0.0, 1.0) ; // set the output variable to a dark-red color
+	TexCoord = aTexCoord;
+    //Normal = mat3(transpose(inverse(u_model))) * aNormal; 
+	
+    gl_Position =  u_projection * u_view * u_model * vec4(aPosition, 1.0) ; // see how we directly give a vec3 to vec4's constructor
 }
 
 #elif defined(FS_BUILD)
 out vec4 FragColor;
-  
-in vec4 vertexColor; // the input variable from the vertex shader (same name and same type)  
+
+layout (std140) uniform Material
+{
+    vec4 mat_ambient;
+	vec4 mat_diffuse;
+	vec4 mat_specular;
+	float mat_shininess;
+};
+uniform sampler2D u_texture;
+in vec2 TexCoord;
 
 void main()
 {
-	FragColor = vertexColor;
+	FragColor = texture(u_texture,TexCoord);
 }
 #endif

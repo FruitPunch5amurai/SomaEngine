@@ -28,11 +28,9 @@ public:
 	void run();
 	void exitGame();
 	
-	//Window GetWindow() { return m_window; }
-	//Window* GetWindowPointer() { return &m_window; }
 	float getDeltaTime() { return m_deltaTime; }
-	inline void processMessages(IApplicationInputHandler& eventHandler) {
-		eventProcessor->processMessages(eventHandler);
+	inline void processMessages() {
+		eventProcessor->processMessages();
 	}
 	inline static IMainGame& Get() { return *s_Instance; }
 	SOMA_ENGINE::ImGuiLayer* GetImGuiLayer() { return m_imGuiLayer; }
@@ -40,17 +38,12 @@ public:
 	void PushOverlay(SOMA_ENGINE::Layer* overlay);
 	void OnEvent(SOMA_ENGINE::Event& e);
 
-	//ResourceManager resourceManager;
-	//SpriteBatch spriteBatch;
-	/*ResourceManager resourceManager;*/
-	RenderDevice* renderDevice;
-	RenderTarget* renderTarget;
 	Window* window;
 	InputHandler inputHandler;
 
 protected:
 	virtual void update(float dt);
-	virtual void draw(float dt);
+	virtual void draw();
 
 	bool initialize();
 	bool initializeSystems();

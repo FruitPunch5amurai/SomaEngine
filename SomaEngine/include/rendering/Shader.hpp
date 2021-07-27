@@ -11,6 +11,7 @@ namespace SOMA_ENGINE {
 	{
 		SOMA_Array<uint32>      shaders;
 		Map<SOMA_String, int32> uniformMap;
+		Map<SOMA_String, int32> uniformBinding;
 		Map<SOMA_String, int32> samplerMap;
 	};
 
@@ -19,13 +20,30 @@ namespace SOMA_ENGINE {
 		virtual ~Shader() {}
 		virtual void Bind()const = 0;
 		virtual void Unbind() const = 0;				
+		virtual void UploadInt(const SOMA_String& uniformName, const int& value) const = 0;
 		virtual void UploadUniformBuffer(const SOMA_String& uniformBufferName, SOMA_ENGINE::UniformBuffer* buffer)const = 0;
 		virtual void UploadMat4(const SOMA_String& uniformName, const glm::mat4& value) const = 0;
+		virtual void UploadFloat4(const SOMA_String& uniformName, const glm::vec4& value) const = 0;
+		virtual void UploadFloat3(const SOMA_String& uniformName, const glm::vec3& value) const = 0;
+		virtual const SOMA_String& GetName() const = 0;
 
-		static Shader* Create(const SOMA_String& name);
+		static Ref<Shader> Create(const SOMA_String& filepath);
+		static Ref<Shader> Create(const SOMA_String& name, const SOMA_String& filepath);
 
 
 	};
+
+	class ShaderLibrary {
+	public:
+		void AddShader(const Ref<Shader>& s);
+		void AddShader(const SOMA_String& name, const Ref<Shader>& s);
+		Ref<Shader> Load(const SOMA_String& filepath);
+		Ref<Shader> Load(const SOMA_String& name, const SOMA_String& filepath);
+		Ref<Shader> Get(const SOMA_String& name);
+	private:
+		Map<SOMA_String, Ref<Shader>> m_shaders;
+	};
+
 }
 
 

@@ -18,6 +18,42 @@ SDLWindow::SDLWindow(const WindowProps& props)
 {
 	Init(props);
 }
+
+bool SDLWindow::IsKeyPressed(uint32 key) const
+{
+	return m_inputManager.isKeyDown(key);
+}
+
+bool SDLWindow::IsMouseButtonPressed(uint32 key) const
+{
+	return m_inputManager.isKeyDown(key);
+}
+
+glm::vec2 SDLWindow::GetMousePosition() const
+{
+	return m_inputManager.getMouseCoords();
+}
+
+void SDLWindow::KeyPress(uint32 keyId)
+{
+	m_inputManager.KeyPress(keyId);
+}
+
+void SDLWindow::KeyRelease(uint32 keyId)
+{
+	m_inputManager.KeyRelease(keyId);
+}
+
+void SDLWindow::SetMouseCoords(float x, float y)
+{
+	m_inputManager.setMouseCoords(x, y);
+}
+
+void SDLWindow::UpdateInput()
+{
+	m_inputManager.Update();
+}
+
 void SDLWindow::Init(const WindowProps& props)
 {
 	const uint32 flags = SDL_INIT_EVERYTHING;
@@ -65,7 +101,6 @@ void SDLWindow::Init(const WindowProps& props)
 	SOMA_CORE_DEBUG("---Vendor:{0}", glGetString(GL_VENDOR));
 	SOMA_CORE_DEBUG("---Renderer:{0}", glGetString(GL_RENDERER));
 	SOMA_CORE_DEBUG("---Version:{0}", glGetString(GL_VERSION));
-
 #endif
 }
 void SDLWindow::Destroy()

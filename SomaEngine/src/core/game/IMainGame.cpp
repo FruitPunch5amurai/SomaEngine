@@ -6,6 +6,7 @@
 #include "core/Timing.hpp"
 #include "core/Logger.hpp"
 #include "events/Event.hpp"
+#include <rendering/RenderCommand.hpp>
 
 #define BIND_EVENT_FN(x) std::bind(&IMainGame::x,this,std::placeholders::_1)
 
@@ -59,19 +60,15 @@ void IMainGame::run()
 			float deltaTime = (float) Math::min(frameTime, dt);
 			update(deltaTime);
 			for (SOMA_ENGINE::Layer* layer : m_layerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(deltaTime);
 			frameTime -= deltaTime;
 			t += deltaTime;
 			shouldRender = true;
 		}
 		if (shouldRender) {
-			draw(0.0);
-
+			draw();
 		}
-
-		processMessages(inputHandler);
-
-
+		processMessages();
 	}
 	exitGame();
 }
@@ -90,8 +87,6 @@ void IMainGame::exitGame()
 	/*resourceManager.cleanUp();*/
 	delete eventProcessor;
 	delete window;
-	delete renderDevice;
-	delete renderTarget;
 }
 
 void IMainGame::PushLayer(SOMA_ENGINE::Layer* layer)
@@ -111,8 +106,6 @@ void IMainGame::OnEvent(SOMA_ENGINE::Event& e)
 	SOMA_ENGINE::EventDispatcher evtDispatcher(e);
 
 	evtDispatcher.Dispatch<SOMA_ENGINE::WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-
-	//SOMA_CORE_DEBUG("Event Fired: {0}", e.ToString());
 
 	/*Handle the event for each layer*/
 	for (auto it = m_layerStack.end(); it != m_layerStack.begin();)
@@ -153,11 +146,14 @@ void IMainGame::update(float dt)
 	}
 }
 
-void IMainGame::draw(float dt)
+void IMainGame::draw()
 {
 	if (m_currentScene && m_currentScene->getState() == ScreenState::RUNNING)
-		m_currentScene->draw(dt);
+		m_currentScene->draw();
 	
+	for (SOMA_ENGINE::Layer* layer : m_layerStack)
+		layer->OnDraw();
+
 	m_imGuiLayer->Begin();
 	{
 		for (SOMA_ENGINE::Layer* layer : m_layerStack)
@@ -192,12 +188,8 @@ bool IMainGame::initializeSystems()
 
 	window = GenericWindow::create(WindowProps(m_windowTitle));
 	eventProcessor = GenericEventProcessor::create(window);
-
-
 	window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-
-	renderDevice = new RenderDevice(*window);
-	renderTarget = new RenderTarget(*renderDevice);
+	SOMA_ENGINE::RenderCommand::Init();
 
 	m_imGuiLayer = new SOMA_ENGINE::ImGuiLayer();
 	PushOverlay(m_imGuiLayer);

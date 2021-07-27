@@ -3,6 +3,7 @@
 #include "core/common.hpp"
 #include <SDL/SDL.h>
 #include "platform/generic/GenericWindow.hpp"
+#include "input/InputManager.hpp"
 
 
 class  SDLWindow : public GenericWindow {
@@ -22,6 +23,15 @@ public:
 
 		EventCallbackFn EventCallback;
 	};
+
+	virtual bool IsKeyPressed(uint32 key) const override;
+	virtual bool IsMouseButtonPressed(uint32 key) const override;
+	virtual glm::vec2 GetMousePosition() const override;
+	virtual void KeyPress(uint32 keyId)override;
+	virtual void KeyRelease(uint32 keyId)override;
+	virtual void SetMouseCoords(float x, float y)override;
+	virtual void UpdateInput() override;
+
 private:
 	virtual void Init(const WindowProps& props);
 	virtual void Destroy();
@@ -29,4 +39,5 @@ private:
 	SDL_Window* window;
 	WindowData winData;
 
+	SOMA_ENGINE::InputManager m_inputManager;
 };
