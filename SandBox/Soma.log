@@ -1,10 +1,22 @@
-[14:14:30] [debug] SOMA: Logger Initialized
-[14:14:31] [debug] SOMA: SDL Window Created: SandBox (1280,730)
-[14:14:31] [debug] SOMA: OpenGL Info: 
-[14:14:31] [debug] SOMA: ---Vendor:NVIDIA Corporation
-[14:14:31] [debug] SOMA: ---Renderer:NVIDIA GeForce GTX 1050/PCIe/SSE2
-[14:14:31] [debug] SOMA: ---Version:4.5.0 NVIDIA 466.27
-[14:14:32] [debug] SOMA: 32.25806451612903 ms , FPS 31
-[14:14:33] [debug] SOMA: 19.607843137254903 ms , FPS 51
-[14:14:34] [debug] SOMA: 20 ms , FPS 50
-[14:14:35] [debug] SOMA: 19.607843137254903 ms , FPS 51
+[11:58:10] [debug] SOMA: Logger Initialized
+[11:58:11] [debug] SOMA: SDL Window Created: SandBox (1280,730)
+[11:58:11] [debug] SOMA: OpenGL Info: 
+[11:58:11] [debug] SOMA: ---Vendor:NVIDIA Corporation
+[11:58:11] [debug] SOMA: ---Renderer:NVIDIA GeForce GTX 1050/PCIe/SSE2
+[11:58:11] [debug] SOMA: ---Version:4.5.0 NVIDIA 466.27
+[11:58:12] [debug] SOMA: 58.8235294117647 ms , FPS 17
+[11:58:13] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:14] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:15] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:16] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:17] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:18] [debug] SOMA: 16.666666666666668 ms , FPS 60
+[11:58:19] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:20] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:21] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:22] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:23] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:24] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:25] [debug] SOMA: 16.39344262295082 ms , FPS 61
+[11:58:26] [debug] SOMA: 16.666666666666668 ms , FPS 60
+[11:58:27] [debug] SOMA: 16.39344262295082 ms , FPS 61

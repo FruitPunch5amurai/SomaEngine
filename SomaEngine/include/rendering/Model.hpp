@@ -5,6 +5,11 @@
 #include <rendering/VertexArray.hpp>
 #include <rendering/Texture.hpp>
 
+#include <rendering/Mesh.hpp>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 class ResourceManager;
 class Model {
 public:
@@ -23,3 +28,22 @@ public:
 private:
 
 };
+
+namespace SOMA_ENGINE {
+	class Model {
+	public:
+		Model(const SOMA_String& filepath) {
+			LoadModel(filepath);
+		}
+		SOMA_Array<Mesh> m_meshes;
+	private:
+
+		SOMA_String m_name;
+		void LoadModel(const SOMA_String& filepath);
+		void ProcessNode(aiNode* node, const aiScene* scene);
+		Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
+
+	private:
+
+	};
+}

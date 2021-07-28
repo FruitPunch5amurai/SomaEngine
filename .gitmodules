@@ -10,3 +10,6 @@
 [submodule "SomaEngine/vendor/directxheaders"]
 	path = SomaEngine/vendor/directxheaders
 	url = https://github.com/microsoft/DirectX-Headers
+[submodule "SomaEngine/vendor/assimp"]
+	path = SomaEngine/vendor/assimp
+	url = https://github.com/assimp/assimp.git

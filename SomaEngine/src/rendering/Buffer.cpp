@@ -6,11 +6,11 @@
 	#include "platform/opengl/OpenGLBuffer.hpp"
 #endif
 namespace SOMA_ENGINE {
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32 size) {
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32 size) {
 		switch (Renderer::GetAPI())
 		{
 			case RenderAPI::API::None: return nullptr; break;
-			case RenderAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size); break;
+			case RenderAPI::API::OpenGL: return std::make_shared<OpenGLVertexBuffer>(vertices, size); break;
 		}
 		return nullptr;
 	}

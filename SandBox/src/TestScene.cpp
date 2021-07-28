@@ -13,7 +13,8 @@
 #include <imgui/imgui.h>
 #include "TestScene.hpp"
 #include <glm/ext/matrix_transform.hpp>
-#include "core/Input.hpp"
+#include <rendering/Model.hpp>
+#include <core/Input.hpp>
 
 class TestLayer : public SOMA_ENGINE::Layer
 {
@@ -22,6 +23,7 @@ public:
 	void OnAttach() override {
 
 		m_shaderLibrary.Load("res/shaders/nullShader.glsl");
+		m_shaderLibrary.Load("res/shaders/modelShader.glsl");
 		/*Square*/
 		m_squarePos = glm::vec3(0.0f, 0.0f, 0.0f);
 
@@ -32,8 +34,8 @@ public:
 			 0.5,0.5,0.0f,	1.0f,1.0f,
 			-0.5,0.5,0.0f,	0.0,1.0f
 		};
-		std::shared_ptr<SOMA_ENGINE::VertexBuffer> squareVB;
-		squareVB.reset(SOMA_ENGINE::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		SOMA_ENGINE::Ref<SOMA_ENGINE::VertexBuffer> squareVB = 
+			SOMA_ENGINE::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		SOMA_ENGINE::BufferLayout squarelayout = {
 			{SOMA_ENGINE::ShaderDataType::Float3, "aPosition"},
 			{SOMA_ENGINE::ShaderDataType::Float2, "aTexCoord"}
@@ -88,13 +90,14 @@ public:
 		m_materialUniformBuffer.reset(SOMA_ENGINE::UniformBuffer::Create(&m_cubeMaterial,
 			sizeof(SOMA_ENGINE::MaterialSpec)));
 
-		auto shader = m_shaderLibrary.Get("nullShader");
+		auto shader = m_shaderLibrary.Get("modelShader");
 		shader->UploadUniformBuffer("Matrices", m_uniformBuffer.get());
 		shader->UploadUniformBuffer("Material", m_materialUniformBuffer.get());
 
 		m_texture.reset(SOMA_ENGINE::Texture2D::Create("res/textures/container.png"));
 
-
+		/*Load Model*/
+		m_model = std::make_shared<SOMA_ENGINE::Model>("res/models/cube.obj");
 
 	};
 	void OnDetach() override {
@@ -140,7 +143,8 @@ public:
 
 		m_texture->Bind();
 
-		SOMA_ENGINE::Renderer::Submit(m_squareVA, m_shaderLibrary.Get("nullShader"));
+		SOMA_ENGINE::Renderer::Submit(m_model->m_meshes[0].m_vertexArray, 
+			m_shaderLibrary.Get("modelShader"));
 
 		SOMA_ENGINE::Renderer::End();
 	}
@@ -163,6 +167,9 @@ private:
 	SOMA_ENGINE::MaterialSpec m_cubeMaterial;
 	SOMA_ENGINE::CameraProps m_cameraProps;
 	SOMA_ENGINE::ShaderLibrary m_shaderLibrary;
+
+	std::shared_ptr<SOMA_ENGINE::Model> m_model;
+
 
 };
 
