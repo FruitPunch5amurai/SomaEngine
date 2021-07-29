@@ -23,4 +23,15 @@ namespace SOMA_ENGINE {
 
 		RenderCommand::DrawIndexed(vertexArray);
 	}
+	void Renderer::Submit(const Ref<Model>& model)
+	{
+		for each (Mesh mesh in model->meshes)
+		{
+			mesh.Bind();
+
+			RenderCommand::DrawIndexed(mesh.GetVertexArray());
+			
+			mesh.Unbind();
+		}
+	}
 }

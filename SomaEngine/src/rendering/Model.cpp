@@ -46,7 +46,10 @@ namespace SOMA_ENGINE {
 	{
 		Assimp::Importer import;
 		const aiScene* scene = import.ReadFile(filepath,
-			aiProcess_Triangulate | aiProcess_FlipUVs);
+            aiProcess_Triangulate |
+            aiProcess_GenSmoothNormals |
+            aiProcess_FlipUVs |
+            aiProcess_CalcTangentSpace);
 
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
 		{
@@ -63,7 +66,7 @@ namespace SOMA_ENGINE {
 		for (unsigned int i = 0; i < node->mNumMeshes; i++)
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-			m_meshes.push_back(ProcessMesh(mesh, scene));
+            meshes.push_back(ProcessMesh(mesh, scene));
 		}
 		// then do the same for each of its children
 		for (unsigned int i = 0; i < node->mNumChildren; i++)
@@ -143,19 +146,49 @@ namespace SOMA_ENGINE {
         // normal: texture_normalN
 
         // 1. diffuse maps
-        //vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
-        //textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
-        //// 2. specular maps
-        //vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
-        //textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
-        //// 3. normal maps
-        //std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
-        //textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
-        //// 4. height maps
-        //std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
-        //textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
+        SOMA_Array<MeshTexture> diffuseMaps = LoadMaterialTextures(material, aiTextureType_DIFFUSE, MeshTextureType::DIFFUSE);
+        textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+        // 2. specular maps
+        SOMA_Array<MeshTexture> specularMaps = LoadMaterialTextures(material, aiTextureType_SPECULAR, MeshTextureType::SPECULAR);
+        textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
+        // 3. normal maps
+        SOMA_Array<MeshTexture> normalMaps = LoadMaterialTextures(material, aiTextureType_HEIGHT, MeshTextureType::NORMAL);
+        textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
+        // 4. height maps
+        SOMA_Array<MeshTexture> heightMaps = LoadMaterialTextures(material, aiTextureType_AMBIENT, MeshTextureType::HEIGHT);
+        textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
         // return a mesh object created from the extracted mesh data
-        return Mesh(data, indices, textures);
+        return Mesh(data, indices, textures,m_shaderRef);
+    }
+    SOMA_Array<MeshTexture> Model::LoadMaterialTextures(aiMaterial* mat, aiTextureType type, MeshTextureType texType)
+    {
+        SOMA_Array<MeshTexture> textures;
+        for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
+        {
+            aiString str;
+            mat->GetTexture(type, i, &str);
+            // check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
+            bool skip = false;
+            for (unsigned int j = 0; j < m_texturesLoaded.size(); j++)
+            {
+                if (std::strcmp(m_texturesLoaded[j].path.data(), str.C_Str()) == 0)
+                {
+                    textures.push_back(m_texturesLoaded[j]);
+                    skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
+                    break;
+                }
+            }
+            if (!skip)
+            {   // if texture hasn't been loaded already, load it
+                MeshTexture texture;
+                texture.texture =SOMA_ENGINE::Texture2D::Create(str.C_Str());
+                texture.type = texType;
+                texture.path = str.C_Str();
+                textures.push_back(texture);
+                m_texturesLoaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
+            }
+        }
+        return textures;
     }
 }

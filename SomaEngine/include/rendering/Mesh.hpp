@@ -11,16 +11,15 @@
 namespace SOMA_ENGINE
 {
 	enum class MeshTextureType {
-		DIFFUSE
-	};
-	struct MeshVertex {
-		glm::vec3 Position;
-		glm::vec3 Normal;
-		glm::vec2 TexCoords;
+		DIFFUSE,
+		SPECULAR,
+		HEIGHT,
+		NORMAL
 	};
 	struct MeshTexture {
-		uint32 id;
+		Ref<Texture2D> texture;
 		MeshTextureType type;
+		SOMA_String path;
 	};
 
 	class Mesh {
@@ -31,10 +30,17 @@ namespace SOMA_ENGINE
 
 		Mesh(SOMA_Array<float> data, 
 			SOMA_Array<uint32> indices,
-			SOMA_Array<MeshTexture> textures);
-		std::shared_ptr<VertexArray> m_vertexArray;
+			SOMA_Array<MeshTexture> textures,
+			Ref<Shader> shaderRef);
+
+		void Bind();
+		void Unbind();
+
+		Ref<VertexArray> GetVertexArray() { return m_vertexArray; }
 	private:
 		//render data
+		Ref<VertexArray> m_vertexArray;
+		Ref<Shader> m_shaderRef;
 
 		void SetupMesh();
 	};

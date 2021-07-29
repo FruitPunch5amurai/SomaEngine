@@ -331,7 +331,8 @@ namespace SOMA_ENGINE {
 			uniformBinding[uniformBlockName] = glGetUniformBlockIndex(shaderProgram, &name[0]);
 			binding++;
 		}
-
+		glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(GL_TEXTURE1);
 		GLint numUniforms = 0;
 		glGetProgramiv(shaderProgram, GL_ACTIVE_UNIFORMS, &numUniforms);
 
@@ -347,6 +348,7 @@ namespace SOMA_ENGINE {
 				continue;
 			}
 			SOMA_String name((char*)&uniformName[0], actualLength);
+			SOMA_CORE_DEBUG(name);
 			samplerMap[name] = glGetUniformLocation(shaderProgram, (char*)&uniformName[0]);
 		}
 	}

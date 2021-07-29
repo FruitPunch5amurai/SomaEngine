@@ -10,7 +10,7 @@ namespace SOMA_ENGINE {
 	{
 		m_path = path;
 		int width, height, channels;
-		stbi_set_flip_vertically_on_load(1);
+		//stbi_set_flip_vertically_on_load(1);
 
 		stbi_uc* data =  stbi_load(path.c_str(),&width,&height,&channels,0);
 		SOMA_ASSERT(data, "Failed to load image!");

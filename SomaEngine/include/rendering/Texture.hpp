@@ -87,6 +87,6 @@ namespace SOMA_ENGINE {
 
 	class Texture2D : public Texture {
 	public:
-		static Texture2D* Create(const SOMA_String& path);
+		static Ref<Texture2D> Create(const SOMA_String& path);
 	};
 };

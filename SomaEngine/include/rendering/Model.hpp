@@ -32,10 +32,11 @@ private:
 namespace SOMA_ENGINE {
 	class Model {
 	public:
-		Model(const SOMA_String& filepath) {
+		Model(const SOMA_String& filepath, Ref<Shader> shaderRef) {
+			m_shaderRef = shaderRef;
 			LoadModel(filepath);
 		}
-		SOMA_Array<Mesh> m_meshes;
+		SOMA_Array<Mesh> meshes;
 	private:
 
 		SOMA_String m_name;
@@ -44,6 +45,8 @@ namespace SOMA_ENGINE {
 		Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
 
 	private:
-
+		SOMA_Array<MeshTexture> m_texturesLoaded;
+		Ref<Shader> m_shaderRef;
+		SOMA_Array<MeshTexture> LoadMaterialTextures(aiMaterial* mat, aiTextureType type, MeshTextureType texType);
 	};
 }

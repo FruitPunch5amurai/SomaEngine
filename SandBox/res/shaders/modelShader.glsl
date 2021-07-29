@@ -48,28 +48,30 @@ layout (std140) uniform Material
 	vec4 mat_specular;
 	float mat_shininess;
 };
-uniform sampler2D u_texture;
+uniform sampler2D tex_diffuse0;
+
 in vec2 TexCoord;
 
 void main()
 {
-	//FragColor = texture(u_texture,TexCoord);
-	float spreadX = 0.1;
-	float spreadY = 0.1;
-	
-	vec4 color = vec4(1.0,0.0,0.0,1.0);
-	    if(TexCoord.x < spreadX) {
-    	color.rgb *= smoothstep( 0.0, spreadX, TexCoord.x );
-    } 
-	if(TexCoord.x > 1.0 - spreadX) {
-    	color.rgb *= smoothstep( 1.0, 1.0 - spreadX, TexCoord.x );
-    } 
-	if(TexCoord.y < spreadY) {
-    	color.rgb *= smoothstep( 0.0, spreadY, TexCoord.y );
-    } 
-	if(TexCoord.y > 1.0 - spreadY) {
-    	color.rgb *= smoothstep( 1.0, 1.0 - spreadY, TexCoord.y );
-    }
-    FragColor = color;
+	FragColor = mat_diffuse * vec4(texture(tex_diffuse0, TexCoord));
+	//FragColor = mix(texture(u_diffuse0, TexCoord), texture(u_diffuse1, TexCoord), 0.5);
+	//float spreadX = 0.1;
+	//float spreadY = 0.1;
+	//
+	//vec4 color = vec4(1.0,0.0,0.0,1.0);
+	//    if(TexCoord.x < spreadX) {
+    //	color.rgb *= smoothstep( 0.0, spreadX, TexCoord.x );
+    //} 
+	//if(TexCoord.x > 1.0 - spreadX) {
+    //	color.rgb *= smoothstep( 1.0, 1.0 - spreadX, TexCoord.x );
+    //} 
+	//if(TexCoord.y < spreadY) {
+    //	color.rgb *= smoothstep( 0.0, spreadY, TexCoord.y );
+    //} 
+	//if(TexCoord.y > 1.0 - spreadY) {
+    //	color.rgb *= smoothstep( 1.0, 1.0 - spreadY, TexCoord.y );
+    //}
+    //FragColor = color;
 }
 #endif

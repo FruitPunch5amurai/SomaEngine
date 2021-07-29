@@ -22,33 +22,33 @@ public:
 	TestLayer() : Layer("Test") {}
 	void OnAttach() override {
 
-		m_shaderLibrary.Load("res/shaders/nullShader.glsl");
+//		m_shaderLibrary.Load("res/shaders/nullShader.glsl");
 		m_shaderLibrary.Load("res/shaders/modelShader.glsl");
 		/*Square*/
-		m_squarePos = glm::vec3(0.0f, 0.0f, 0.0f);
+		m_position = glm::vec3(0.0f, 0.0f, 0.0f);
 
-		m_squareVA.reset(SOMA_ENGINE::VertexArray::Create());
-		float squareVertices[5 * 4] = {
-			-0.5,-0.5,0.0f, 0.0f,0.0f,
-			 0.5,-0.5,0.0f,	1.0f,0.0f,
-			 0.5,0.5,0.0f,	1.0f,1.0f,
-			-0.5,0.5,0.0f,	0.0,1.0f
-		};
-		SOMA_ENGINE::Ref<SOMA_ENGINE::VertexBuffer> squareVB = 
-			SOMA_ENGINE::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
-		SOMA_ENGINE::BufferLayout squarelayout = {
-			{SOMA_ENGINE::ShaderDataType::Float3, "aPosition"},
-			{SOMA_ENGINE::ShaderDataType::Float2, "aTexCoord"}
-		};
-		squareVB->SetLayout(squarelayout);
-		m_squareVA->AddVertexBuffer(squareVB);
+		//m_squareVA.reset(SOMA_ENGINE::VertexArray::Create());
+		//float squareVertices[5 * 4] = {
+		//	-0.5,-0.5,0.0f, 0.0f,0.0f,
+		//	 0.5,-0.5,0.0f,	1.0f,0.0f,
+		//	 0.5,0.5,0.0f,	1.0f,1.0f,
+		//	-0.5,0.5,0.0f,	0.0,1.0f
+		//};
+		//SOMA_ENGINE::Ref<SOMA_ENGINE::VertexBuffer> squareVB = 
+		//	SOMA_ENGINE::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
+		//SOMA_ENGINE::BufferLayout squarelayout = {
+		//	{SOMA_ENGINE::ShaderDataType::Float3, "aPosition"},
+		//	{SOMA_ENGINE::ShaderDataType::Float2, "aTexCoord"}
+		//};
+		//squareVB->SetLayout(squarelayout);
+		//m_squareVA->AddVertexBuffer(squareVB);
 
-		uint32 squareIndexes[6] = {
-			0,1,2,2,3,0
-		};
-		std::shared_ptr<SOMA_ENGINE::IndexBuffer> squareIB;
-		squareIB.reset(SOMA_ENGINE::IndexBuffer::Create(squareIndexes, sizeof(squareIndexes)));
-		m_squareVA->SetIndexBuffer(squareIB);
+		//uint32 squareIndexes[6] = {
+		//	0,1,2,2,3,0
+		//};
+		//std::shared_ptr<SOMA_ENGINE::IndexBuffer> squareIB;
+		//squareIB.reset(SOMA_ENGINE::IndexBuffer::Create(squareIndexes, sizeof(squareIndexes)));
+		//m_squareVA->SetIndexBuffer(squareIB);
 
 
 		m_cameraProps.width = IMainGame::Get().window->getWidth();
@@ -67,7 +67,7 @@ public:
 
 		/*Camera*/
 		m_camera.reset(new SOMA_ENGINE::FirstPersonCamera(
-			glm::vec3(0.0f, 0.0f, 3.0f),
+			glm::vec3(0.0f, 0.0f, 9.0f),
 			glm::vec3(0.0f, -90.0f, 0.0f),
 			&m_cameraProps));
 		//m_camera.reset(new SOMA_ENGINE::FirstPersonCamera(
@@ -77,7 +77,7 @@ public:
 
 		/*Material*/
 		m_cubeMaterial.ambient = glm::vec4(1.0f, 0.5f, 0.31f, 1.0f);
-		m_cubeMaterial.diffuse = glm::vec4(1.0f, 0.5f, 0.31f, 1.0f);
+		m_cubeMaterial.diffuse = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		m_cubeMaterial.specular = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
 		m_cubeMaterial.shininess = 32.0f;
 
@@ -88,16 +88,15 @@ public:
 		m_uniformBuffer.reset(SOMA_ENGINE::UniformBuffer::Create(&m_uniformBufferArray[0],
 			sizeof(glm::mat4) * 3));
 		m_materialUniformBuffer.reset(SOMA_ENGINE::UniformBuffer::Create(&m_cubeMaterial,
-			sizeof(SOMA_ENGINE::MaterialSpec)));
+			sizeof(SOMA_ENGINE::Material)));
 
 		auto shader = m_shaderLibrary.Get("modelShader");
 		shader->UploadUniformBuffer("Matrices", m_uniformBuffer.get());
 		shader->UploadUniformBuffer("Material", m_materialUniformBuffer.get());
 
-		m_texture.reset(SOMA_ENGINE::Texture2D::Create("res/textures/container.png"));
-
 		/*Load Model*/
-		m_model = std::make_shared<SOMA_ENGINE::Model>("res/models/cube.obj");
+		m_model = std::make_shared<SOMA_ENGINE::Model>("res/models/backpack.obj",
+			m_shaderLibrary.Get("modelShader"));
 
 	};
 	void OnDetach() override {
@@ -123,14 +122,14 @@ public:
 			m_camera->Move(SOMA_ENGINE::CameraMovement::DOWN, deltaTime);
 		}
 		if (SOMA_ENGINE::Input::IsKeyPressed(SOMA_ENGINE::Key::SDL_SCANCODE_Z)) {
-			m_squarePos = glm::vec3(m_squarePos.x - deltaTime, m_squarePos.y, m_squarePos.z);
+			m_position = glm::vec3(m_position.x - deltaTime, m_position.y, m_position.z);
 		}
 
 		if (SOMA_ENGINE::Input::IsKeyPressed(SOMA_ENGINE::Key::SDL_SCANCODE_X)) {
-			m_squarePos = glm::vec3(m_squarePos.x + deltaTime, m_squarePos.y, m_squarePos.z);
+			m_position = glm::vec3(m_position.x + deltaTime, m_position.y, m_position.z);
 		}
 		m_uniformBufferArray[1] = m_camera->GetView();
-		m_uniformBufferArray[2] = glm::translate(glm::mat4(1.0f),m_squarePos);
+		m_uniformBufferArray[2] = glm::translate(glm::mat4(1.0f), m_position);
 
 	}
 	void OnDraw() override {
@@ -141,10 +140,7 @@ public:
 
 		m_uniformBuffer->Update(&m_uniformBufferArray[0], sizeof(glm::mat4) * 3);
 
-		m_texture->Bind();
-
-		SOMA_ENGINE::Renderer::Submit(m_model->m_meshes[0].m_vertexArray, 
-			m_shaderLibrary.Get("modelShader"));
+		SOMA_ENGINE::Renderer::Submit(m_model);
 
 		SOMA_ENGINE::Renderer::End();
 	}
@@ -154,17 +150,16 @@ public:
 	void OnEvent(SOMA_ENGINE::Event& event) override {};
 private:
 	/*OpenGL Test*/
-	glm::vec3 m_squarePos;
+	glm::vec3 m_position;
 
 
-	std::shared_ptr<SOMA_ENGINE::VertexArray> m_squareVA;
+	//std::shared_ptr<SOMA_ENGINE::VertexArray> m_squareVA;
 	std::shared_ptr<SOMA_ENGINE::Camera> m_camera;
 	std::shared_ptr<SOMA_ENGINE::UniformBuffer> m_uniformBuffer;
 	std::shared_ptr<SOMA_ENGINE::UniformBuffer> m_materialUniformBuffer;
 	std::shared_ptr<SOMA_ENGINE::FrameBuffer> m_frameBuffer;
-	SOMA_ENGINE::Ref<SOMA_ENGINE::Texture2D> m_texture;
 	SOMA_Array<glm::mat4> m_uniformBufferArray;
-	SOMA_ENGINE::MaterialSpec m_cubeMaterial;
+	SOMA_ENGINE::Material m_cubeMaterial;
 	SOMA_ENGINE::CameraProps m_cameraProps;
 	SOMA_ENGINE::ShaderLibrary m_shaderLibrary;
 
