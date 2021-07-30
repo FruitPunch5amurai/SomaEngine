@@ -10,24 +10,24 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-class ResourceManager;
-class Model {
-public:
-	Model();
-	~Model();
-	SOMA_Array<IndexedModel> meshes;
-	SOMA_Array<uint32> materialIndices;
-	SOMA_Array<MaterialSpec> materials;
-	SOMA_Array<VertexArray*> VAOs;
-
-	void generateVAOs(RenderDevice& deviceIn,enum RenderDevice::BufferUsage usage);
-	void loadTextures(ResourceManager* rManager, RenderDevice& deviceIn, OpenGLRenderDevice::PixelFormat format);
-	void cleanUp();
-
-
-private:
-
-};
+//class ResourceManager;
+//class Model {
+//public:
+//	Model();
+//	~Model();
+//	SOMA_Array<IndexedModel> meshes;
+//	SOMA_Array<uint32> materialIndices;
+//	SOMA_Array<MaterialSpec> materials;
+//	SOMA_Array<VertexArray*> VAOs;
+//
+//	void generateVAOs(RenderDevice& deviceIn,enum RenderDevice::BufferUsage usage);
+//	void loadTextures(ResourceManager* rManager, RenderDevice& deviceIn, OpenGLRenderDevice::PixelFormat format);
+//	void cleanUp();
+//
+//
+//private:
+//
+//};
 
 namespace SOMA_ENGINE {
 	class Model {

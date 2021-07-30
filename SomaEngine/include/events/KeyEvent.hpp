@@ -57,12 +57,9 @@ namespace SOMA_ENGINE {
 	class  KeyTypedEvent : public KeyEvent
 	{
 	public:
-		KeyTypedEvent(const KeyCode keycode,const char* text)
+		KeyTypedEvent(const KeyCode keycode)
 			: KeyEvent(keycode) {
-			this->text = text;
 		}
-
-		const char* text;
 		std::string ToString() const override
 		{
 			std::stringstream ss;

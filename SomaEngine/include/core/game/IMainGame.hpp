@@ -5,7 +5,6 @@
 #include <rendering/RenderDevice.hpp>
 #include <rendering/RenderTarget.hpp>
 #include <GameRenderContext.hpp>
-#include <InputHandler.hpp>
 #include <core/game/ResourceManager.hpp>
 #include <core/EventProcessor.hpp>
 #include <core/LayerStack.hpp>
@@ -29,17 +28,15 @@ public:
 	void exitGame();
 	
 	float getDeltaTime() { return m_deltaTime; }
-	inline void processMessages() {
-		eventProcessor->processMessages();
-	}
 	inline static IMainGame& Get() { return *s_Instance; }
 	SOMA_ENGINE::ImGuiLayer* GetImGuiLayer() { return m_imGuiLayer; }
 	void PushLayer(SOMA_ENGINE::Layer* layer);
 	void PushOverlay(SOMA_ENGINE::Layer* overlay);
 	void OnEvent(SOMA_ENGINE::Event& e);
 
-	Window* window;
-	InputHandler inputHandler;
+	void Shutdown() { running = false; }
+
+	SOMA_ENGINE::Scope<SOMA_ENGINE::Window> window;
 
 protected:
 	virtual void update(float dt);
@@ -47,8 +44,6 @@ protected:
 
 	bool initialize();
 	bool initializeSystems();
-
-	EventProcessor* eventProcessor;
 
 	std::unique_ptr<SceneList> m_sceneList = nullptr;
 	IScene* m_currentScene;
@@ -60,9 +55,13 @@ protected:
 
 	SOMA_String m_windowTitle = "Default";
 	bool running = true;
+	bool m_minimized = false;
 
 private:
 	SOMA_ENGINE::ImGuiLayer* m_imGuiLayer;
 	bool OnWindowClose(SOMA_ENGINE::WindowCloseEvent& e);
+	bool OnWindowResize(SOMA_ENGINE::WindowResizeEvent& e);
+
+	
 	static IMainGame* s_Instance;
 };

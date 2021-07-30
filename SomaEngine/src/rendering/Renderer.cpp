@@ -2,9 +2,16 @@
 #include "rendering/Renderer.hpp"
 #include "rendering/RenderCommand.hpp"
 namespace SOMA_ENGINE {
+
+	Scope<Renderer::SceneData> Renderer::s_sceneData = CreateScope<Renderer::SceneData>();
+
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+	}
+	void Renderer::OnWindowResize(uint32 width, uint32 height)
+	{
+		RenderCommand::SetViewport(width,height);
 	}
 	void Renderer::Begin(Ref<SOMA_ENGINE::Camera>& camera)
 	{
@@ -14,8 +21,7 @@ namespace SOMA_ENGINE {
 	void Renderer::End()
 	{
 	}
-	void Renderer::Submit(const Ref<VertexArray>& vertexArray,
-		const Ref<SOMA_ENGINE::Shader>& shader)
+	void Renderer::Submit(const Ref<VertexArray>& vertexArray, const Ref<SOMA_ENGINE::Shader>& shader)
 	{
 		shader->Bind();
 

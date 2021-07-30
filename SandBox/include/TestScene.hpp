@@ -34,19 +34,4 @@ public:
 
 private:
 
-	/*RenderContext* m_renderContext;*/
-
-	Model* model;
-
-	InputControl horizontal;
-	InputControl vertical;
-
-	VertexArray* vertexArray;
-	SOMA_Array<Matrix> uniformBufferArray;
-
-	entt::registry enttRegistry;
-	entt::dispatcher eventDispatcher;
-
-
-
 };

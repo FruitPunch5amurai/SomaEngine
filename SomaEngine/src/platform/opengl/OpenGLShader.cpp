@@ -136,13 +136,23 @@ namespace SOMA_ENGINE {
 	{
 		glUseProgram(0);
 	}
-	void OpenGLShader::UploadUniformBuffer(const SOMA_String& uniformBufferName,
-		SOMA_ENGINE::UniformBuffer* buffer) const
+	void OpenGLShader::BindUniformBuffer(const SOMA_String& uniformBufferName,
+		SOMA_ENGINE::UniformBuffer* buffer)
 	{
 		OpenGLUniformBuffer* b  = (OpenGLUniformBuffer*)(buffer);	// TODO: May have to change this later
 		glBindBufferBase(GL_UNIFORM_BUFFER,
 			m_shaderProgramMap.at(m_id).uniformBinding.at(uniformBufferName),
 			b->GetId());
+
+		m_shaderProgramMap.at(m_id).uniformBufferIds[uniformBufferName] = b->GetId();
+	}
+	void OpenGLShader::UploadUniformBuffer(const SOMA_String& uniformName, const void* data, uint32 dataSize, uint32 offset) const
+	{
+		int32 id = m_shaderProgramMap.at(m_id).uniformBufferIds.at(uniformName);
+
+		glBindBuffer(GL_UNIFORM_BUFFER, id);
+		glBufferSubData(GL_UNIFORM_BUFFER, offset, dataSize, data);
+		glBindBuffer(GL_UNIFORM_BUFFER, 0);
 	}
 	void OpenGLShader::UploadInt(const SOMA_String& uniformName, const int& value) const
 	{

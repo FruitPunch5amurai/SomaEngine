@@ -13,12 +13,14 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relativeto root folder
 IncludeDir = {}
 IncludeDir["Glad"] = "SomaEngine/vendor/Glad/include"
+IncludeDir["GLFW"] = "SomaEngine/vendor/GLFW/include"
 IncludeDir["imgui"] = "SomaEngine/vendor/imgui"
 IncludeDir["glm"] = "SomaEngine/vendor/glm"
 IncludeDir["stb_image"] = "SomaEngine/vendor/stb_image"
 
 include "SomaEngine/vendor/Glad"
 include "SomaEngine/vendor/imgui"
+include "SomaEngine/vendor/GLFW"
 
 project "SomaEngine"
 	location "SomaEngine"
@@ -54,10 +56,11 @@ project "SomaEngine"
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.GLFW}"
 	}
 	libdirs { "Deps/lib/x64" }
 
-	links {"opengl32.lib","assimp-vc141-mtd.lib","SDL2.lib","Glad","imgui"}
+	links {"opengl32.lib","assimp-vc141-mtd.lib","Glad","imgui","GLFW"}
 
 	filter "system:windows"
 		systemversion "latest"
@@ -65,7 +68,7 @@ project "SomaEngine"
 		{
 				"SOMA_ENABLE_ASSERTS",
 				"SOMA_PLATFORM_WINDOWS",
-				"SOMA_PLATFORM_SDL",
+				"SOMA_PLATFORM_GLFW",
 				"SOMA_RENDER_OPENGL"
 		}
 
@@ -127,7 +130,7 @@ project "SandBox"
 		{
 				"SOMA_ENABLE_ASSERTS",
 				"SOMA_PLATFORM_WINDOWS",
-				"SOMA_PLATFORM_SDL"
+				"SOMA_PLATFORM_GLFW"
 		}
 
 	filter "configurations:Debug"

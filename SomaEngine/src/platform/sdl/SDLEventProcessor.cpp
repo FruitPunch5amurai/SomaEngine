@@ -35,11 +35,18 @@ void SDLEventProcessor::processMessages()
 			switch (e.window.event)
 			{
 				case SDL_WINDOWEVENT_RESIZED:
+				case SDL_WINDOWEVENT_MINIMIZED:
+				case SDL_WINDOWEVENT_MAXIMIZED:
+				case SDL_WINDOWEVENT_SIZE_CHANGED:
 				{
 					SOMA_ENGINE::WindowResizeEvent ev(e.window.data1, e.window.data2);
+					m_sdlWindow->setWidth(e.window.data1);
+					m_sdlWindow->setHeight(e.window.data2);
+					SOMA_CORE_WARN("Window Resize: {0} x {1}", e.window.data1, e.window.data2);
 					m_sdlWindow->winData.EventCallback(ev);
 					break;
 				}
+
 				case SDL_WINDOWEVENT_CLOSE:
 				{
 					SOMA_ENGINE::WindowCloseEvent ev;
@@ -70,7 +77,7 @@ void SDLEventProcessor::processMessages()
 			}
 			case SDL_TEXTINPUT:
 			{
-				SOMA_ENGINE::KeyTypedEvent ev(e.key.keysym.scancode,e.text.text);
+				SOMA_ENGINE::KeyTypedEvent ev(e.key.keysym.scancode);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}
@@ -95,6 +102,12 @@ void SDLEventProcessor::processMessages()
 				this->m_sdlWindow->SetMouseCoords(e.motion.x, e.motion.y);
 				//eventHandler.onMouseMove(e.motion.x, e.motion.y, e.motion.xrel, e.motion.yrel);
 				SOMA_ENGINE::MouseMovedEvent ev((float)e.motion.x, (float)e.motion.y);
+				m_sdlWindow->winData.EventCallback(ev);
+				break;
+			}
+			case SDL_MOUSEWHEEL:
+			{
+				SOMA_ENGINE::MouseScrolledEvent ev((float)e.wheel.x, (float)e.wheel.y);
 				m_sdlWindow->winData.EventCallback(ev);
 				break;
 			}

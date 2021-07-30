@@ -1,4 +1,4 @@
-#pragma once
-
-#include "platform/PlatformRenderDevice.hpp"
-typedef PlatformRenderDevice RenderDevice;
+//#pragma once
+//
+//#include "platform/PlatformRenderDevice.hpp"
+//typedef PlatformRenderDevice RenderDevice;

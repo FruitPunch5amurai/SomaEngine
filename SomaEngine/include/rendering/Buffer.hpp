@@ -1,5 +1,6 @@
 #pragma once
 #include "core/common.hpp"
+#include <dataStructures/string.hpp>
 
 namespace SOMA_ENGINE {
 	enum class ShaderDataType {

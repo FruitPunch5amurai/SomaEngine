@@ -15,6 +15,8 @@ public:
 	void update() override;
 	inline unsigned int  getWidth() const override { return winData.width; }
 	inline unsigned int  getHeight() const override { return winData.height; }
+	inline virtual void setWidth(uint32 w) override { winData.width = w; }
+	inline virtual void setHeight(uint32 h) override { winData.height = h; }
 	void SetEventCallback(const EventCallbackFn& callback) override { winData.EventCallback = callback; }
 	struct WindowData {
 		std::string title;

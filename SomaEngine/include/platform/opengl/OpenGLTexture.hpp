@@ -15,7 +15,7 @@ namespace SOMA_ENGINE {
 		uint32 m_height;
 		uint32 m_id;
 		SOMA_String m_path;
-		GLenum m_internalFormat;
-		GLenum m_dataFormat;
+		uint32 m_internalFormat;
+		uint32 m_dataFormat;
 	};
 }

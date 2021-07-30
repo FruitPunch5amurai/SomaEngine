@@ -1,12 +1,16 @@
 #include "somapch.hpp"
 #include "imgui/ImGuiLayer.hpp"
 #include <imgui.h>
+#include <examples/imgui_impl_glfw.h>
 #include <examples/imgui_impl_opengl3.h>
-#include <examples/imgui_impl_sdl.h>
 
 #include <core/game/IMainGame.hpp>
 #include <core/Logger.hpp>
 #include <input/KeyCode.hpp>
+
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+
 namespace SOMA_ENGINE {
 	ImGuiLayer::ImGuiLayer()
 		:Layer("ImGui Layer")
@@ -21,11 +25,11 @@ namespace SOMA_ENGINE {
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
-		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-		//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
-		//io.ConfigViewportsNoAutoMerge = true;
-		//io.ConfigViewportsNoTaskBarIcon = true;
+		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+		io.ConfigViewportsNoAutoMerge = true;
+		io.ConfigViewportsNoTaskBarIcon = true;
 
 		// Setup Dear ImGui style
 		ImGui::StyleColorsDark();
@@ -38,23 +42,25 @@ namespace SOMA_ENGINE {
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
 		SetDarkThemeColors();
+		GLFWwindow* window = static_cast<GLFWwindow*>(IMainGame::Get().window->GetNativeWindow());
 		// Setup Platform/Renderer bindings
-		ImGui_ImplSDL2_InitForOpenGL((SDL_Window*)IMainGame::Get().window->windowHandle, IMainGame::Get().window->context);
+		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 410");
 
-		io.DisplaySize = ImVec2((float)IMainGame::Get().window->getWidth(), (float)IMainGame::Get().window->getHeight());
+		io.DisplaySize = ImVec2((float)IMainGame::Get().window->GetWidth(), 
+			(float)IMainGame::Get().window->GetHeight());
 
 	}
 	void ImGuiLayer::OnDetach()
 	{
 		// Cleanup
 		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplSDL2_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
 	void ImGuiLayer::OnImGuiRender()
 	{
-		static bool show = true;
+		static bool show = false;
 		ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
 		ImGui::ShowDemoWindow(&show);
 	}
@@ -94,7 +100,7 @@ namespace SOMA_ENGINE {
 	void ImGuiLayer::Begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplSDL2_NewFrame((SDL_Window*)IMainGame::Get().window->windowHandle);
+		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 		//ImGuizmo::BeginFrame();
 
@@ -103,7 +109,7 @@ namespace SOMA_ENGINE {
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		IMainGame& app = IMainGame::Get();
-		io.DisplaySize = ImVec2((float)app.window->getWidth(), (float)app.window->getHeight());
+		io.DisplaySize = ImVec2((float)app.window->GetWidth(), (float)app.window->GetHeight());
 
 		// Rendering
 		ImGui::Render();
@@ -111,11 +117,10 @@ namespace SOMA_ENGINE {
 
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{
-			SDL_Window* backup_current_window = SDL_GL_GetCurrentWindow();
-			SDL_GLContext backup_current_context = SDL_GL_GetCurrentContext();
+			GLFWwindow* backup_current_context = glfwGetCurrentContext();
 			ImGui::UpdatePlatformWindows();
 			ImGui::RenderPlatformWindowsDefault();
-			SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
+			glfwMakeContextCurrent(backup_current_context);
 		}
 	}
 	void ImGuiLayer::SetDarkThemeColors()

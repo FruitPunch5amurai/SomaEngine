@@ -13,3 +13,6 @@
 [submodule "SomaEngine/vendor/assimp"]
 	path = SomaEngine/vendor/assimp
 	url = https://github.com/assimp/assimp.git
+[submodule "SomaEngine/vendor/GLFW"]
+	path = SomaEngine/vendor/GLFW
+	url = https://github.com/TheCherno/glfw

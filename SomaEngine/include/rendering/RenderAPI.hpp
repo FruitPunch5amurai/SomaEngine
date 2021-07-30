@@ -13,6 +13,7 @@ namespace SOMA_ENGINE {
 	public:
 		virtual void SetClearColor(const glm::vec4& color) = 0;
 		virtual void Clear() = 0;
+		virtual void SetViewPort(uint32 width, uint32 height) = 0;
 		virtual void DrawIndexed(const Ref<SOMA_ENGINE::VertexArray>& vertexArray) = 0;
 		virtual void Init() = 0;
 

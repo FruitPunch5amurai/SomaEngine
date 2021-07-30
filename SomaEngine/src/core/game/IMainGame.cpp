@@ -1,5 +1,6 @@
 #include "somapch.hpp"
 
+#include "rendering/Renderer.hpp"
 #include "core/game/IMainGame.hpp"
 #include "core/game/SceneList.hpp"
 #include "core/game/IScene.hpp"
@@ -7,6 +8,7 @@
 #include "core/Logger.hpp"
 #include "events/Event.hpp"
 #include <rendering/RenderCommand.hpp>
+#include <GLFW/glfw3.h>
 
 #define BIND_EVENT_FN(x) std::bind(&IMainGame::x,this,std::placeholders::_1)
 
@@ -31,7 +33,7 @@ void IMainGame::run()
 
 	double t = 0.0;
 	double dt = 1.0f/60.0f;	
-	double currentTime = Time::getTime();
+	double currentTime = glfwGetTime();
 
 	//Frame Counter
 	int nbFrame = 0;
@@ -40,7 +42,7 @@ void IMainGame::run()
 
 	//Semi Fixed Timestep
 	while (running) {
-		double newTime = Time::getTime();
+		double newTime = glfwGetTime(); //Time::getTime();
 		double frameTime = newTime - currentTime;
 		currentTime = newTime;
 
@@ -68,7 +70,6 @@ void IMainGame::run()
 		if (shouldRender) {
 			draw();
 		}
-		processMessages();
 	}
 	exitGame();
 }
@@ -85,8 +86,6 @@ void IMainGame::exitGame()
 		m_sceneList.reset();
 	}
 	/*resourceManager.cleanUp();*/
-	delete eventProcessor;
-	delete window;
 }
 
 void IMainGame::PushLayer(SOMA_ENGINE::Layer* layer)
@@ -106,6 +105,7 @@ void IMainGame::OnEvent(SOMA_ENGINE::Event& e)
 	SOMA_ENGINE::EventDispatcher evtDispatcher(e);
 
 	evtDispatcher.Dispatch<SOMA_ENGINE::WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+	evtDispatcher.Dispatch<SOMA_ENGINE::WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
 	/*Handle the event for each layer*/
 	for (auto it = m_layerStack.end(); it != m_layerStack.begin();)
@@ -148,12 +148,14 @@ void IMainGame::update(float dt)
 
 void IMainGame::draw()
 {
-	if (m_currentScene && m_currentScene->getState() == ScreenState::RUNNING)
-		m_currentScene->draw();
-	
-	for (SOMA_ENGINE::Layer* layer : m_layerStack)
-		layer->OnDraw();
+	if (!m_minimized)
+	{
+		if (m_currentScene && m_currentScene->getState() == ScreenState::RUNNING)
+			m_currentScene->draw();
 
+		for (SOMA_ENGINE::Layer* layer : m_layerStack)
+			layer->OnDraw();
+	}
 	m_imGuiLayer->Begin();
 	{
 		for (SOMA_ENGINE::Layer* layer : m_layerStack)
@@ -161,7 +163,7 @@ void IMainGame::draw()
 	}
 	m_imGuiLayer->End();
 
-	window->update();
+	window->OnUpdate();
 }
 
 bool IMainGame::initialize()
@@ -186,10 +188,14 @@ bool IMainGame::initializeSystems()
 	SOMA_ENGINE::Logger::Init();
 	SOMA_CORE_DEBUG("Logger Initialized");
 
-	window = GenericWindow::create(WindowProps(m_windowTitle));
-	eventProcessor = GenericEventProcessor::create(window);
+	WindowProps props;
+
+	window = SOMA_ENGINE::Window::Create(SOMA_ENGINE::WindowProps("Soma Engine"));
+
+	//window = GenericWindow::create(WindowProps(m_windowTitle));
+	//eventProcessor = GenericEventProcessor::create(window);
 	window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-	SOMA_ENGINE::RenderCommand::Init();
+	SOMA_ENGINE::Renderer::Init();
 
 	m_imGuiLayer = new SOMA_ENGINE::ImGuiLayer();
 	PushOverlay(m_imGuiLayer);
@@ -201,4 +207,17 @@ bool IMainGame::OnWindowClose(SOMA_ENGINE::WindowCloseEvent& e)
 {
 	running = false;
 	return true;
+}
+
+bool IMainGame::OnWindowResize(SOMA_ENGINE::WindowResizeEvent& e)
+{
+	/* TODO: Fix bug where minimize and maximize screen */
+	//if (e.GetWidth() == 0 || e.GetHeight() == 0)
+	//{
+	//	m_minimized = true;
+	//	return false;
+	//}
+	//SOMA_ENGINE::Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+	//m_minimized = false;
+	return false;
 }

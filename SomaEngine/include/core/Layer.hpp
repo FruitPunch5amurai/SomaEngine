@@ -14,7 +14,7 @@ namespace SOMA_ENGINE {
 		virtual void OnUpdate(float deltaTime) {}
 		virtual void OnDraw() {}
 		virtual void OnImGuiRender() {}
-		virtual void OnEvent(Event& event) {}
+		virtual void OnEvent(Event& e) {}
 
 		inline const SOMA_String& GetName() const { return m_name; }
 	protected:

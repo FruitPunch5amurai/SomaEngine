@@ -15,8 +15,6 @@ namespace SOMA_ENGINE {
 		virtual void SetLayout(const BufferLayout& layout) override { m_layout = layout; }
 		virtual const BufferLayout& GetLayout() const override { return m_layout; }
 
-
-		RenderDevice* device;
 	private:
 		BufferLayout m_layout;
 		uint32 m_id;
@@ -29,7 +27,6 @@ namespace SOMA_ENGINE {
 		virtual void Unbind()const;
 
 		virtual uint32 GetCount() const { return m_count; }
-		RenderDevice* device;
 	private:
 		uint32 m_id;
 		uint32 m_count;

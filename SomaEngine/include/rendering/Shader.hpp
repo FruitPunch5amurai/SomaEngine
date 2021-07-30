@@ -12,6 +12,7 @@ namespace SOMA_ENGINE {
 		SOMA_Array<uint32>      shaders;
 		Map<SOMA_String, int32> uniformMap;
 		Map<SOMA_String, int32> uniformBinding;
+		Map<SOMA_String, int32> uniformBufferIds;
 		Map<SOMA_String, int32> samplerMap;
 	};
 
@@ -20,8 +21,12 @@ namespace SOMA_ENGINE {
 		virtual ~Shader() {}
 		virtual void Bind()const = 0;
 		virtual void Unbind() const = 0;				
+
+		virtual void BindUniformBuffer(const SOMA_String& uniformBufferName, SOMA_ENGINE::UniformBuffer* buffer) = 0;
+
 		virtual void UploadInt(const SOMA_String& uniformName, const int& value) const = 0;
-		virtual void UploadUniformBuffer(const SOMA_String& uniformBufferName, SOMA_ENGINE::UniformBuffer* buffer)const = 0;
+		virtual void UploadUniformBuffer(const SOMA_String& uniformName,const void * data,
+			uint32 dataSize, uint32 offset) const = 0;
 		virtual void UploadMat4(const SOMA_String& uniformName, const glm::mat4& value) const = 0;
 		virtual void UploadFloat4(const SOMA_String& uniformName, const glm::vec4& value) const = 0;
 		virtual void UploadFloat3(const SOMA_String& uniformName, const glm::vec3& value) const = 0;

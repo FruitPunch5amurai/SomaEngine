@@ -25,6 +25,9 @@ public:
 	virtual uint32 getWidth() const = 0;
 	virtual uint32 getHeight() const = 0;
 
+	virtual void setWidth(uint32 w) = 0;
+	virtual void setHeight(uint32 h) = 0;
+
 	virtual bool IsKeyPressed(uint32 key) const =0;
 	virtual bool IsMouseButtonPressed(uint32 key) const = 0;
 	virtual glm::vec2 GetMousePosition() const = 0;
@@ -39,4 +42,9 @@ public:
 	void* context;
 	
 private:
+};
+
+class PlatformWindow {
+	using EventCallbackFn = std::function<void(SOMA_ENGINE::Event&)>;
+
 };

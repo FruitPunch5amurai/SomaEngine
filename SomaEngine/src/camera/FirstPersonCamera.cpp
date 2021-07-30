@@ -4,10 +4,11 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/ext/matrix_clip_space.hpp>
 #include "math/math.hpp"
+#include "core/Logger.hpp"
 
 namespace SOMA_ENGINE {
 	FirstPersonCamera::FirstPersonCamera(glm::vec3 position,
-		glm::vec3 rotation, CameraProps* props)
+		glm::vec3 rotation)
 	{
 		m_cameraPosition = position;
 		m_cameraRotation = rotation;
@@ -21,55 +22,34 @@ namespace SOMA_ENGINE {
 		m_cameraRotation.y = rotation.y;
 		m_cameraRotation.x = rotation.x;
 
-		this->m_props = props;
-
 		UpdateCameraVectors();
 		CalculateProjectionMatrix();
 		CalculateViewMatrix();
 	}
 	glm::mat4 FirstPersonCamera::CalculateProjectionMatrix()
 	{
-		if (m_props->isOrthographic)
+		if (m_isOrtho)
 		{
-			m_projectionMatrix = glm::ortho(m_props->left, m_props->right,
-				m_props->bottom, m_props->top,-1.0f,1.0f);
+			m_projectionMatrix = glm::ortho(m_left, m_right,
+				m_bottom, m_top,-1.0f,1.0f);
 		}
 		else {
-			m_projectionMatrix = glm::perspective((float)glm::radians(m_props->fov),
-				(float)m_props->width
-				/ (float)m_props->height,
-				m_props->fov_near, m_props->fov_far);
+			m_projectionMatrix = glm::perspective((float)glm::radians(m_fov),
+				(float)m_width
+				/ (float)m_height,
+				m_fov_near, m_fov_far);
 		}
 		return m_projectionMatrix;
 	}
-	void FirstPersonCamera::Move(CameraMovement moveDirection,float deltaTime)
+	void FirstPersonCamera::Move(glm::vec3 newPosition)
 	{
-		switch (moveDirection)
-		{
-			case CameraMovement::LEFT:
-				m_cameraPosition.x -= m_props->cameraSpeed * deltaTime;
-				break;
-			case CameraMovement::RIGHT:
-				m_cameraPosition.x += m_props->cameraSpeed * deltaTime;
-				break;
-			case CameraMovement::UP:
-				m_cameraPosition.y += m_props->cameraSpeed * deltaTime;
-				break;
-			case CameraMovement::DOWN:
-				m_cameraPosition.y -= m_props->cameraSpeed * deltaTime;
-				break;
-			case CameraMovement::FOWARD:
-				m_cameraPosition.z -= m_props->cameraSpeed * deltaTime;
-				break;
-			case CameraMovement::BACKWARD:
-				m_cameraPosition.z += m_props->cameraSpeed * deltaTime;
-				break;
-		}
+		m_cameraPosition = newPosition;
+
 		CalculateViewMatrix();
 	}
 	glm::mat4 FirstPersonCamera::CalculateViewMatrix()
 	{
-		if (m_props->isOrthographic){
+		if (m_isOrtho){
 			glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(m_cameraPosition.x,m_cameraPosition.y,0.0f)) *
 				glm::rotate(glm::mat4(1.0f), glm::radians(m_cameraRotation.z), glm::vec3(0, 0, 1));
 			m_viewMatrix = glm::inverse(transform);
@@ -78,6 +58,11 @@ namespace SOMA_ENGINE {
 			m_viewMatrix = glm::lookAt(m_cameraPosition, m_cameraPosition + m_cameraFront, m_cameraUp);
 		}
 		return m_viewMatrix;
+	}
+	void FirstPersonCamera::SetPerspectiveSettings(float fov, float fov_near, float fov_far, float width, float height)
+	{
+		m_fov = fov; m_fov_near = fov_near; m_fov_far = fov_far; m_width = width; m_height = height;
+		CalculateProjectionMatrix();
 	}
 	void FirstPersonCamera::UpdateCameraVectors()
 	{

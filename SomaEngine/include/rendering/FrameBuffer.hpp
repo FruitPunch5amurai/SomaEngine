@@ -20,6 +20,6 @@ namespace SOMA_ENGINE {
 		virtual uint32 GetColorAttachmentID() const = 0;
 
 		virtual const FrameBufferSpecification& GetSpecification() const = 0;
-		static FrameBuffer* Create(const FrameBufferSpecification& spec);
+		static Ref<FrameBuffer> Create(const FrameBufferSpecification& spec);
 	};
 }

@@ -1,6 +1,7 @@
 #include "somapch.hpp"
 #include "platform/opengl/OpenGLBuffer.hpp"
 #include <glad/glad.h>
+#include <core/memory.hpp>
 namespace SOMA_ENGINE {
 	/* Vertex Buffer*/
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32 size)

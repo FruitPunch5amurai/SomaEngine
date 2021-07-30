@@ -1,11 +1,10 @@
 #pragma once
-#include <SDL/SDL.h>
-
 #include "core/Layer.hpp"
 #include "events/Event.hpp"
 #include "events/KeyEvent.hpp"
 #include "events/MouseEvent.hpp"
 #include "events/ApplicationEvent.hpp"
+
 namespace SOMA_ENGINE {
 	class  ImGuiLayer : public Layer {
 	public:

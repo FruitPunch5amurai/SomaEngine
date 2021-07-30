@@ -48,7 +48,28 @@ layout (std140) uniform Material
 	vec4 mat_specular;
 	float mat_shininess;
 };
+
+//stuct Light{
+//	vec3 position;
+//    vec3 direction;
+//    vec3 ambient;
+//    vec3 diffuse;
+//    vec3 specular; 
+//
+//    float constant;
+//    float linear;
+//    float quadratic;
+//	
+//	//Spotlight 
+//    float cutOff;
+//    float outerCutOff;  
+//}
+
+//#define NR_LIGHTS 60
+//uniform Light lights[NR_LIGHTS];
+
 uniform sampler2D tex_diffuse0;
+uniform sampler2D tex_specular0;
 
 in vec2 TexCoord;
 

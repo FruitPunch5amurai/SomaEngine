@@ -13,10 +13,14 @@ namespace SOMA_ENGINE {
 		inline static void Clear() {
 			s_renderAPI->Clear();
 		}
+		inline static void SetViewport(uint32 width, uint32 height) {
+			s_renderAPI->SetViewPort(width,height);
+		}
 		inline static void DrawIndexed(const Ref<SOMA_ENGINE::VertexArray>& vertexArray)
 		{
 			s_renderAPI->DrawIndexed(vertexArray);
 		}
+
 	private:
 		static RenderAPI* s_renderAPI;
 	};
